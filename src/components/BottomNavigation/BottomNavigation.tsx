@@ -1,5 +1,6 @@
 import { BottomNavigationTab } from '@/components/BottomNavigation/BottomNavigationTab';
 import React from 'react';
+import { useRouter } from 'next/router';
 
 interface Props {}
 

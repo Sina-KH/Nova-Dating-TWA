@@ -1,13 +1,10 @@
-import React from "react";
-import BottomNavigation from "@/components/BottomNavigation/BottomNavigation";
+import React from 'react';
+import BottomNavigation from '@/components/BottomNavigation/BottomNavigation';
 
 interface Props {
-    children: React.ReactNode
+    children: React.ReactNode;
 }
 
-export default function MainContainer({children}: Props) {
-    return <div>
-        {children}
-        <BottomNavigation/>
-    </div>
+export default function MainContainer({ children }: Props) {
+    return <div className={'h-screen'}>{children}</div>;
 }
