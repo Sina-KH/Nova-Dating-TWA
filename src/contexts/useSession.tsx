@@ -20,7 +20,7 @@ function MySessionProvider(props: { children: React.ReactNode }) {
 
     // Send data to back-end service, validate hash and receive session token
     useEffect(() => {
-        let hash = window.Telegram.WebApp.initData;
+        let hash = window.Telegram?.WebApp?.initData;
         if (!hash && process.env.NEXT_PUBLIC_FAKE_HASH) hash = process.env.NEXT_PUBLIC_FAKE_HASH;
 
         new UserGetTokenRequest({ hash: hash })
@@ -33,19 +33,23 @@ function MySessionProvider(props: { children: React.ReactNode }) {
     }, []);
 
     // check if app should redirect to register
-    if (sessionToken?.length && !!user && !router.pathname.startsWith('/register')) {
+    const dataLoaded = sessionToken?.length && !!user;
+    const shouldRedirectToRegister = dataLoaded && !router.pathname.startsWith('/register');
+    if (shouldRedirectToRegister) {
+        let registerPath = '/register/interests';
+        if (!user.gender) registerPath = '/register';
         router.push(
             {
-                pathname: '/register'
+                pathname: registerPath
             },
-            '/register',
+            registerPath,
             { shallow: true }
         );
     }
 
     return (
         <MySessionContext.Provider value={{ sessionToken, user }}>
-            {sessionToken?.length && !!user ? props.children : undefined}
+            {dataLoaded && !shouldRedirectToRegister ? props.children : undefined}
         </MySessionContext.Provider>
     );
 }

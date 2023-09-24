@@ -11,7 +11,7 @@ export abstract class ApiRequest<I, O> {
 
     abstract input: I;
 
-    call(): Promise<O | null> {
-        return sendAPIRequest<O>(this.method, this.path, this.input);
+    call(sessionToken?: string): Promise<O | null> {
+        return sendAPIRequest<O>(this.method, this.path, this.input, sessionToken);
     }
 }

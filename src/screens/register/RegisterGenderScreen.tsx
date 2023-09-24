@@ -3,17 +3,24 @@ import { useSession } from '@/contexts/useSession';
 import Image from 'next/image';
 import MyButton from '@/components/Button/MyButton';
 import MyRadioSelect from '@/components/Select/MyRadioSelect';
+import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+import { ProfileSetGenderRequest } from '@/api/requests/profileSetGenderRequest';
+import MyTitle from '@/components/Label/MyTitle';
 
 export default function RegisterGenderScreen() {
+    const { sessionToken } = useSession();
     const { t } = useTranslation();
-    const { user } = useSession();
+    const [selectedGender, setSelectedGender] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+    const router = useRouter();
 
     return (
-        <div className={'h-full flex flex-col ml-4 mr-4 items-center justify-around'}>
+        <>
             <Image src={'/logo.png'} alt={'logo'} width={320} height={180} />
 
             <div className={'w-full flex flex-col items-start space-y-4'}>
-                <p className={'font-bold text-3xl text-telegram-text'}>{t('register.gender.title')}</p>
+                <MyTitle>{t('register.gender.title')}</MyTitle>
                 <MyRadioSelect
                     items={[
                         {
@@ -25,10 +32,38 @@ export default function RegisterGenderScreen() {
                             name: t('register.gender.female')
                         }
                     ]}
+                    selectedID={selectedGender}
+                    onSelectionChanged={(selectedID: string) => {
+                        setSelectedGender(selectedID);
+                    }}
                 />
             </div>
 
-            <MyButton>{t('register.gender.next')}</MyButton>
-        </div>
+            <MyButton
+                disabled={!selectedGender.length}
+                onClick={() => {
+                    if (!selectedGender.length) return;
+                    if (isLoading) return;
+                    setIsLoading(true);
+                    new ProfileSetGenderRequest({ gender: selectedGender })
+                        .call(sessionToken)
+                        .then((response) => {
+                            router.push(
+                                {
+                                    pathname: '/register/interests'
+                                },
+                                '/register/interests',
+                                { shallow: true }
+                            );
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                            setIsLoading(false);
+                        });
+                }}
+            >
+                {t('register.gender.next')}
+            </MyButton>
+        </>
     );
 }
