@@ -1,6 +1,5 @@
 import { BottomNavigationTab } from '@/components/BottomNavigation/BottomNavigationTab';
 import React from 'react';
-import ProfileIcon from './Tabs/profile.svg';
 
 interface Props {}
 
