@@ -17,6 +17,12 @@ module.exports = withBundleAnalyzer({
                 hostname: '127.0.0.1',
                 port: '10201',
                 pathname: '/**'
+            },
+            {
+                protocol: 'https',
+                hostname: 'api_dating.novabots.top',
+                port: '80',
+                pathname: '/**'
             }
         ]
     }
