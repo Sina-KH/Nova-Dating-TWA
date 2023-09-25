@@ -14,15 +14,11 @@ module.exports = withBundleAnalyzer({
         remotePatterns: [
             {
                 protocol: 'http',
-                hostname: '127.0.0.1',
-                port: '10201',
-                pathname: '/**'
+                hostname: '127.0.0.1'
             },
             {
                 protocol: 'https',
-                hostname: 'api_dating.novabots.top',
-                port: '80',
-                pathname: '/**'
+                hostname: 'api_dating.novabots.top'
             }
         ]
     }
