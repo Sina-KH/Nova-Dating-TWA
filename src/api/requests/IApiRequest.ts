@@ -2,7 +2,8 @@ import { sendAPIRequest } from '@/api/sendAPIRequest';
 
 export enum ApiRequestMethod {
     GET = 'GET',
-    POST = 'POST'
+    POST = 'POST',
+    FORM_DATA = 'FORM_DATA'
 }
 
 export abstract class ApiRequest<I, O> {

@@ -9,5 +9,15 @@ module.exports = withBundleAnalyzer({
     i18n: {
         locales: ['en-US', 'fr', 'nl-NL'],
         defaultLocale: 'en-US'
+    },
+    images: {
+        remotePatterns: [
+            {
+                protocol: 'http',
+                hostname: '127.0.0.1',
+                port: '10201',
+                pathname: '/**'
+            }
+        ]
     }
 });

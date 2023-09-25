@@ -36,8 +36,7 @@ function MySessionProvider(props: { children: React.ReactNode }) {
     const dataLoaded = sessionToken?.length && !!user;
     const shouldRedirectToRegister = dataLoaded && !router.pathname.startsWith('/register');
     if (shouldRedirectToRegister) {
-        let registerPath = '/register/interests';
-        if (!user.gender) registerPath = '/register';
+        let registerPath = '/register';
         router.push(
             {
                 pathname: registerPath

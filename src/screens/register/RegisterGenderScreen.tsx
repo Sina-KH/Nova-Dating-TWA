@@ -5,7 +5,7 @@ import MyButton from '@/components/Button/MyButton';
 import MyRadioSelect from '@/components/Select/MyRadioSelect';
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import { ProfileSetGenderRequest } from '@/api/requests/profileSetGenderRequest';
+import { ProfileSetGenderRequest } from '@/api/requests/profile/profileSetGenderRequest';
 import MyTitle from '@/components/Label/MyTitle';
 
 export default function RegisterGenderScreen() {
@@ -47,14 +47,16 @@ export default function RegisterGenderScreen() {
                     setIsLoading(true);
                     new ProfileSetGenderRequest({ gender: selectedGender })
                         .call(sessionToken)
-                        .then((response) => {
-                            router.push(
-                                {
-                                    pathname: '/register/interests'
-                                },
-                                '/register/interests',
-                                { shallow: true }
-                            );
+                        .then(() => {
+                            router
+                                .push(
+                                    {
+                                        pathname: '/register/interests'
+                                    },
+                                    '/register/interests',
+                                    { shallow: true }
+                                )
+                                .then();
                         })
                         .catch((err) => {
                             console.log(err);

@@ -1,5 +1,5 @@
-import RegisterGenderScreen from '@/screens/register/RegisterGenderScreen';
+import RegisterProfileScreen from '@/screens/register/RegisterProfileScreen';
 
 export default function RegisterPage() {
-    return <RegisterGenderScreen />;
+    return <RegisterProfileScreen />;
 }
