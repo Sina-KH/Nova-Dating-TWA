@@ -11,6 +11,8 @@
         --telegram-button-color: var(--tg-theme-button-color, #3390ec);
         --telegram-button-text-color: var(--tg-theme-button-text-color, #ffffff);
         --telegram-secondary-bg-color: var(--tg-theme-secondary-bg-color, #f4f4f5);
+
+        --telegram-text-70-color: rgba(var(--tg-theme-text-color, #000000), 0.7);
     }
 
     html {

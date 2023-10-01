@@ -6,5 +6,5 @@ interface Props {
 }
 
 export default function MainContainer({ children }: Props) {
-    return <div className={'h-screen flex flex-col ml-4 mr-4 items-center justify-around'}>{children}</div>;
+    return <main className={'h-full flex flex-col items-center justify-around'}>{children}</main>;
 }

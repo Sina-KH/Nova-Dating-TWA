@@ -1,23 +1,36 @@
 import React from 'react';
+import clsx from 'clsx';
+import { useRouter } from 'next/router';
 
 interface Props {
+    path: string;
     icon: React.ReactNode;
-    title: string;
     isSelected: boolean;
+    selectedClassName: string;
 }
 
-export function BottomNavigationTab({ title, icon, isSelected }: Props) {
+export function BottomNavigationTab({ path, icon, isSelected, selectedClassName }: Props) {
+    const router = useRouter();
+
     return (
         <button
             type="button"
             className={`${
-                isSelected
-                    ? 'fill-telegram-button stroke-telegram-button'
-                    : 'fill-telegram-secondary-bg stroke-telegram-secondary-bg'
-            } inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group`}
+                isSelected ? selectedClassName : 'fill-telegram-text-70 stroke-telegram-text-70'
+            } inline-flex flex-col items-center justify-center`}
+            onClick={() => {
+                router
+                    .push(
+                        {
+                            pathname: `/${path}`
+                        },
+                        `/${path}`,
+                        { shallow: true }
+                    )
+                    .then();
+            }}
         >
             {icon}
-            <span className="text-sm text-telegram-button">{title}</span>
         </button>
     );
 }

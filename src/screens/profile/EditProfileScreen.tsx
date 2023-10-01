@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import MyTitle from '@/components/Label/MyTitle';
-import MyGrowingContainer from '@/components/Containers/MyGrowingContainer';
 import MyButton from '@/components/Button/MyButton';
 import MyTextField from '@/components/Field/MyTextField';
 import MyEditPhoto from '@/components/Image/MyEditPhoto';
@@ -11,7 +10,7 @@ import { ProfileEditRequest } from '@/api/requests/profile/profileEditRequest';
 import MyDateField from '@/components/Field/MyDateField';
 import { hashToImageURL, ImagePresentationType } from '@/helpers/mediaHelpers';
 
-export default function RegisterProfileScreen() {
+export default function EditProfileScreen() {
     const { sessionToken, user } = useSession();
     const [firstName, setFirstName] = useState(user?.firstName);
     const [lastName, setLastName] = useState(user?.lastName);
@@ -25,7 +24,7 @@ export default function RegisterProfileScreen() {
         <div className={'w-full h-full pt-8 pb-8 flex flex-col items-start space-y-4 pl-4 pr-4'}>
             <MyTitle>{t('register.profile.title')}</MyTitle>
 
-            <MyGrowingContainer className={'flex flex-col gap-4 items-center'}>
+            <div className={'w-full flex flex-col gap-4 items-center'}>
                 {/*Profile image selector*/}
                 <MyEditPhoto
                     defaultImage={hashToImageURL(user?.photo?.hash, ImagePresentationType.medium)}
@@ -35,7 +34,7 @@ export default function RegisterProfileScreen() {
                 />
                 {/*Firstname*/}
                 <MyTextField
-                    placeholder={t('register.profile.firstName')}
+                    placeholder={t('profile.edit.firstName')}
                     value={firstName}
                     onValueChanged={(newValue) => {
                         setFirstName(newValue);
@@ -43,7 +42,7 @@ export default function RegisterProfileScreen() {
                 />
                 {/*Lastname*/}
                 <MyTextField
-                    placeholder={t('register.profile.lastName')}
+                    placeholder={t('profile.edit.lastName')}
                     value={lastName}
                     onValueChanged={(newValue) => {
                         setLastName(newValue);
@@ -51,13 +50,13 @@ export default function RegisterProfileScreen() {
                 />
                 {/*Birthdate*/}
                 <MyDateField
-                    placeholder={t('register.profile.birthdate')}
+                    placeholder={t('profile.edit.birthdate')}
                     value={birthdate}
                     onValueChanged={(newValue) => {
                         setBirthdate(newValue);
                     }}
                 />
-            </MyGrowingContainer>
+            </div>
 
             <MyButton
                 disabled={!firstName?.length && !lastName?.length}
@@ -76,9 +75,9 @@ export default function RegisterProfileScreen() {
                             router
                                 .push(
                                     {
-                                        pathname: '/register/gender'
+                                        pathname: '/profile'
                                     },
-                                    '/register/gender',
+                                    '/register',
                                     { shallow: true }
                                 )
                                 .then();
@@ -89,7 +88,7 @@ export default function RegisterProfileScreen() {
                         });
                 }}
             >
-                {t('register.profile.next')}
+                {t('profile.edit.edit')}
             </MyButton>
         </div>
     );

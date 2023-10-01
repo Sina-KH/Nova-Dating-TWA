@@ -11,6 +11,7 @@ import { useTranslation, initReactI18next } from 'react-i18next';
 import LocalizationResources from '@/helpers/localizationResources';
 import BottomNavigation from '@/components/BottomNavigation/BottomNavigation';
 import { useRouter } from 'next/router';
+import MyGrowingContainer from '@/components/Containers/MyGrowingContainer';
 
 i18n.use(initReactI18next)
     .init({
@@ -27,7 +28,7 @@ const font = Open_Sans({ subsets: ['latin'] });
 
 function MyApp({ Component, pageProps }: AppProps) {
     const router = useRouter();
-
+    const showBottomNavigation = !router.pathname.startsWith('/register');
     return (
         <>
             <Head>
@@ -39,10 +40,14 @@ function MyApp({ Component, pageProps }: AppProps) {
                 }
             `}</style>
             <MySessionProvider>
-                <MainContainer>
-                    <Component {...pageProps} />
-                </MainContainer>
-                {!router.pathname.startsWith('/register') ? <BottomNavigation /> : undefined}
+                <div className={'flex flex-col h-screen'}>
+                    <MyGrowingContainer className={showBottomNavigation ? 'pb-12' : ''}>
+                        <MainContainer>
+                            <Component {...pageProps} />
+                        </MainContainer>
+                    </MyGrowingContainer>
+                    {showBottomNavigation ? <BottomNavigation /> : undefined}
+                </div>
             </MySessionProvider>
         </>
     );

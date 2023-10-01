@@ -19,7 +19,7 @@ export default function RegisterGenderScreen() {
         <>
             <Image src={'/logo.png'} alt={'logo'} width={320} height={180} />
 
-            <div className={'w-full flex flex-col items-start space-y-4'}>
+            <div className={'w-full flex flex-col items-start space-y-4 pl-4 pr-4'}>
                 <MyTitle>{t('register.gender.title')}</MyTitle>
                 <MyRadioSelect
                     items={[
