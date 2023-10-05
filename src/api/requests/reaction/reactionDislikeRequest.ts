@@ -1,11 +1,14 @@
 import { ApiRequest, ApiRequestMethod } from '@/api/requests/IApiRequest';
 
-export class ProfileSetGenderRequest extends ApiRequest<{ gender: string }, {}> {
-    path = 'profile/setGender';
+interface Input {
+    userPID: string;
+}
+export class ReactionDislikeRequest extends ApiRequest<Input, {}> {
+    path = 'reaction/dislike';
     method = ApiRequestMethod.POST;
 
     input;
-    constructor(input: { gender: string }) {
+    constructor(input: Input) {
         super();
         this.input = input;
     }

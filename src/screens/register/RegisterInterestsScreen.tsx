@@ -7,7 +7,7 @@ import MyTitle from '@/components/Label/MyTitle';
 import MySubTitle from '@/components/Label/MySubTitle';
 import MyTagsSelector from '@/components/Select/MyTagsSelector';
 import { TagListRequest } from '@/api/requests/tagListRequest';
-import { ITag, ITagType } from '@/api/models/ITag';
+import { ITag, ITagType } from '@/types/ITag';
 import MyGrowingContainer from '@/components/Containers/MyGrowingContainer';
 import { ProfileSetInterestsRequest } from '@/api/requests/profile/profileSetInterestsRequest';
 

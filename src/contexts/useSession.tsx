@@ -1,12 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { UserGetTokenRequest } from '@/api/requests/userGetTokenRequest';
-import { IUser } from '@/api/models/IUser';
+import { IUser } from '@/types/IUser';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 const MySessionContext = React.createContext<{
     sessionToken?: string;
     user?: IUser;
+    setUser?: (user: IUser | undefined) => void;
 }>({});
 
 export function useSession() {
@@ -47,7 +48,7 @@ function MySessionProvider(props: { children: React.ReactNode }) {
     }
 
     return (
-        <MySessionContext.Provider value={{ sessionToken, user }}>
+        <MySessionContext.Provider value={{ sessionToken, user, setUser }}>
             {dataLoaded && !shouldRedirectToRegister ? props.children : undefined}
         </MySessionContext.Provider>
     );

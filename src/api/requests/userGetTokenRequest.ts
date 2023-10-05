@@ -1,5 +1,5 @@
 import { ApiRequest, ApiRequestMethod } from '@/api/requests/IApiRequest';
-import { IUser } from '@/api/models/IUser';
+import { IUser } from '@/types/IUser';
 
 export class UserGetTokenRequest extends ApiRequest<{ hash: string }, { session: { token: string }; user: IUser }> {
     path = 'user/getToken';

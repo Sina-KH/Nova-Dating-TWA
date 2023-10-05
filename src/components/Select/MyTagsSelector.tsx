@@ -1,4 +1,4 @@
-import { ITag } from '@/api/models/ITag';
+import { ITag } from '@/types/ITag';
 import clsx from 'clsx';
 
 interface Props {

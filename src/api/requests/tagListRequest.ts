@@ -1,6 +1,5 @@
 import { ApiRequest, ApiRequestMethod } from '@/api/requests/IApiRequest';
-import { IUser } from '@/api/models/IUser';
-import { ITag, ITagType } from '@/api/models/ITag';
+import { ITag, ITagType } from '@/types/ITag';
 
 export class TagListRequest extends ApiRequest<{ type: ITagType }, { tags: ITag[] }> {
     path = 'tag/list';

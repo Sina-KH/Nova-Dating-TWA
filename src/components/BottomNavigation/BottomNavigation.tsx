@@ -14,6 +14,16 @@ const tabs = [
         selectedClassName: 'fill-telegram-button stroke-telegram-button-text'
     },
     {
+        key: 'matches',
+        icon: (
+            <svg width="32" height="32" viewBox="0 0 24 24">
+                <rect x="9.49905" y="4.49756" width="13" height="18" rx="2" />
+                <rect x="0.391632" y="4.48901" width="13" height="18" rx="2" transform="rotate(-15 0.391632 4.48901)" />
+            </svg>
+        ),
+        selectedClassName: 'fill-telegram-button stroke-telegram-button-text'
+    },
+    {
         key: 'profile',
         icon: (
             <svg width="32" height="32" viewBox="0 0 24 24">
@@ -44,6 +54,7 @@ export default function BottomNavigation() {
                 {tabs.map((it) => {
                     return (
                         <BottomNavigationTab
+                            key={it.key}
                             path={it.key}
                             icon={it.icon}
                             isSelected={it.key === selectedTab}

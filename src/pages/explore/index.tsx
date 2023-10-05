@@ -3,15 +3,15 @@ import Head from 'next/head';
 import ExploreScreen from '@/screens/explore/ExploreScreen';
 import React from 'react';
 
-const Home: NextPage = () => {
+const Explore: NextPage = () => {
     return (
         <>
             <Head>
                 <title>Explore</title>
-            </Head>{' '}
+            </Head>
             <ExploreScreen />
         </>
     );
 };
 
-export default Home;
+export default Explore;

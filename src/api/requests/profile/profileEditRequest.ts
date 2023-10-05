@@ -1,5 +1,4 @@
 import { ApiRequest, ApiRequestMethod } from '@/api/requests/IApiRequest';
-import { IUser } from '@/api/models/IUser';
 
 interface Input {
     firstName: string;

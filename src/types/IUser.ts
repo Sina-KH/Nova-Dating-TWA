@@ -1,14 +1,25 @@
 export interface IUser {
     // public identifier
     pID: string;
+
+    // general fields
     photo?: {
         hash: string;
     };
     firstName: string;
     lastName: string;
-    birthdate: string;
     gender: 'male' | 'female';
     interests: any;
+
+    // passed if user is himself/herself
+    birthdate?: string;
+
+    // age (passed for other users)
+    age?: number;
+
+    // client-side data
+    reacted?: 'liked' | 'disliked';
+    reactReqInProgress?: boolean;
 }
 
 function calculateAge(birthdate: string) {
@@ -25,6 +36,8 @@ function calculateAge(birthdate: string) {
     return age;
 }
 
-export function userTitle(user: IUser) {
-    return `${user.firstName} ${user.lastName}, ${calculateAge(user.birthdate)}`.trim();
+export function userTitle(user: Partial<IUser>) {
+    return `${user.firstName || ''} ${user.lastName || ''}, ${
+        user.birthdate ? calculateAge(user.birthdate) : user.age || ''
+    }`.trim();
 }

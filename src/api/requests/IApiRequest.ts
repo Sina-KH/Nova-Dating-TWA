@@ -12,7 +12,7 @@ export abstract class ApiRequest<I, O> {
 
     abstract input: I;
 
-    call(sessionToken?: string): Promise<O | null> {
+    call(sessionToken?: string): Promise<O> {
         return sendAPIRequest<O>(this.method, this.path, this.input, sessionToken);
     }
 }

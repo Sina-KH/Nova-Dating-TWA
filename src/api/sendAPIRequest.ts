@@ -1,12 +1,12 @@
 import axios from 'axios';
-import { ApiRequest, ApiRequestMethod } from '@/api/requests/IApiRequest';
+import { ApiRequestMethod } from '@/api/requests/IApiRequest';
 
 export async function sendAPIRequest<O>(
     method: ApiRequestMethod,
     path: string,
     input: any,
     token?: string
-): Promise<O | null> {
+): Promise<O> {
     switch (method.toString()) {
         case ApiRequestMethod.GET.toString():
             try {
@@ -46,5 +46,5 @@ export async function sendAPIRequest<O>(
                 throw e;
             }
     }
-    return null;
+    throw new Error();
 }
