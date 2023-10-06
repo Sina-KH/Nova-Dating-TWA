@@ -6,6 +6,7 @@ import { IUserStatus } from '@/types/IUser';
 import clsx from 'clsx';
 import MainContainer from '@/components/Containers/MainContainer';
 import BottomNavigation from '@/components/BottomNavigation/BottomNavigation';
+import { AnimatePresence, motion } from 'framer-motion';
 
 export default function MyAppContent({ Component, pageProps }: AppProps) {
     const { sessionToken, user } = useSession();
@@ -71,11 +72,32 @@ export default function MyAppContent({ Component, pageProps }: AppProps) {
     const showBottomNavigation = !!user && user.status !== IUserStatus.preRegistered;
     return (
         <div className={clsx('bg-telegram-bg flex flex-col h-screen', isDark ? 'color-scheme-dark' : '')}>
-            <div className={clsx('h-full', showBottomNavigation ? 'pb-12' : '')}>
-                <MainContainer>
-                    <Component {...pageProps} />
-                </MainContainer>
-            </div>
+            <AnimatePresence mode={'wait'}>
+                <motion.div
+                    key={router.route}
+                    initial="pageInitial"
+                    animate="pageAnimate"
+                    exit="pageExit"
+                    variants={{
+                        pageInitial: {
+                            opacity: 0
+                        },
+                        pageAnimate: {
+                            opacity: 1
+                        },
+                        pageExit: {
+                            opacity: 0
+                        }
+                    }}
+                    transition={{ duration: 0.3 }}
+                >
+                    <div className={clsx('h-full', showBottomNavigation ? 'pb-12' : '')}>
+                        <MainContainer>
+                            <Component {...pageProps} />
+                        </MainContainer>
+                    </div>
+                </motion.div>
+            </AnimatePresence>
             {showBottomNavigation ? <BottomNavigation /> : undefined}
         </div>
     );
