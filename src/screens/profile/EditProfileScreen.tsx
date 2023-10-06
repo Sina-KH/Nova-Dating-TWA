@@ -2,7 +2,6 @@ import { useSession } from '@/contexts/useSession';
 import { useTranslation } from 'react-i18next';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import MyTitle from '@/components/Label/MyTitle';
 import MyButton from '@/components/Button/MyButton';
 import MyTextField from '@/components/Field/MyTextField';
 import MyEditPhoto from '@/components/Image/MyEditPhoto';

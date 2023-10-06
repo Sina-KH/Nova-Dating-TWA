@@ -6,8 +6,8 @@ interface Input {
     lastName: string;
     birthdate: string;
     photo?: File;
-    gender: string;
-    interests: string;
+    gender?: string;
+    interests?: string;
 }
 
 export class ProfileEditRequest extends ApiRequest<Input, { user: IUser }> {
