@@ -67,7 +67,7 @@ export default function MyAppContent({ Component, pageProps }: AppProps) {
     }, [sessionToken]);
 
     // empty if loading data
-    if (!dataLoaded) return <></>; // is loading
+    if (!dataLoaded || (router.pathname === '/' && user?.status !== IUserStatus.preRegistered)) return <></>; // is loading or will be redirected
 
     const showBottomNavigation = !!user && user.status !== IUserStatus.preRegistered;
     return (

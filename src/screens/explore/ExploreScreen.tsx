@@ -22,7 +22,7 @@ export default function ExploreScreen() {
         new ExploreUsersRequest({})
             .call(sessionToken)
             .then(({ users }) => {
-                setUsers(users.reverse());
+                setUsers(users);
                 setIsLoading(false);
             })
             .catch((err) => {
@@ -123,9 +123,10 @@ export default function ExploreScreen() {
 
     function filtersPressed() {}
 
-    return isLoading ? (
-        <> </>
-    ) : (
+    if (isLoading) return <></>; // TODO::
+    if (!users?.length) return <></>; // TODO::
+
+    return (
         <>
             <div className={'w-full flex flex-row p-8 items-center gap-2'}>
                 <LogoIcon />

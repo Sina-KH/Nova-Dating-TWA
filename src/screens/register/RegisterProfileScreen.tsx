@@ -64,9 +64,9 @@ export default function RegisterProfileScreen() {
             </MyGrowingContainer>
 
             <MyButton
-                disabled={!firstName?.length && !lastName?.length}
+                disabled={!selectedImage || (!firstName?.length && !lastName?.length)}
                 onClick={() => {
-                    if (!birthdate || (!firstName?.length && !lastName?.length)) return;
+                    if (!selectedImage || !birthdate || (!firstName?.length && !lastName?.length)) return;
                     if (isLoading) return;
                     setIsLoading(true);
                     new ProfileEditRequest({

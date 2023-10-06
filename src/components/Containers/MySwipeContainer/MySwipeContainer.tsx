@@ -65,7 +65,7 @@ export default function MySwipeContainer({ users, userLiked, userDisliked, loadM
         onSwiped: handleSwiped
     });
 
-    if (!users.length) return <p className={'w-full h-full text-center'}>empty view here</p>;
+    if (!users.length) return <p className={'w-full h-full text-center'}>empty view here</p>; // TODO::
 
     return (
         <div className={'flex flex-col w-full h-full overflow-x-hidden'}>
