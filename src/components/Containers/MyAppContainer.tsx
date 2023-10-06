@@ -80,13 +80,20 @@ export default function MyAppContent({ Component, pageProps }: AppProps) {
                     exit="pageExit"
                     variants={{
                         pageInitial: {
-                            opacity: 0
+                            opacity: 0,
+                            width: '100%',
+                            height: '100%',
+                            marginLeft: '30px'
                         },
                         pageAnimate: {
-                            opacity: 1
+                            opacity: 1,
+                            marginLeft: '0px'
                         },
                         pageExit: {
-                            opacity: 0
+                            opacity: 0,
+                            width: '100%',
+                            height: '100%',
+                            marginLeft: '-30px'
                         }
                     }}
                     transition={{ duration: 0.3 }}

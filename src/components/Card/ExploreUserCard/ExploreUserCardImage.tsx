@@ -31,8 +31,8 @@ export default function ExploreUserCardImage({ user }: Props) {
                             y2="-1.61802e-05"
                             gradientUnits="userSpaceOnUse"
                         >
-                            <stop stop-opacity="0" />
-                            <stop offset="1" stop-opacity="0.65" />
+                            <stop stopOpacity="0" />
+                            <stop offset="1" stopOpacity="0.65" />
                         </linearGradient>
                     </defs>
                 </svg>
