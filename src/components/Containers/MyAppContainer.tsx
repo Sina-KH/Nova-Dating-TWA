@@ -105,7 +105,12 @@ export default function MyAppContent({ Component, pageProps }: AppProps) {
                     </div>
                 </motion.div>
             </AnimatePresence>
-            {showBottomNavigation ? <BottomNavigation /> : undefined}
+            <BottomNavigation
+                className={clsx(
+                    showBottomNavigation ? 'opacity-100' : 'opacity-0 pointer-events-none',
+                    'transition-opacity duration-1000'
+                )}
+            />
         </div>
     );
 }

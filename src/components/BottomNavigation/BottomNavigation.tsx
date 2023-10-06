@@ -1,6 +1,7 @@
 import { BottomNavigationTab } from '@/components/BottomNavigation/BottomNavigationTab';
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
+import clsx from 'clsx';
 
 const tabs = [
     {
@@ -73,12 +74,15 @@ const tabs = [
     }
 ];
 
-export default function BottomNavigation() {
+interface Props {
+    className: string;
+}
+export default function BottomNavigation({ className }: Props) {
     const router = useRouter();
     let selectedTab = router.pathname.split('/')[1];
     return (
         <div
-            className="fixed bottom-0 left-0 z-50 w-full"
+            className={clsx('fixed bottom-0 left-0 z-50 w-full', className)}
             style={{
                 height: '113px'
             }}

@@ -46,7 +46,7 @@ export default function MyTitle({ children }: Props) {
                             filterUnits="userSpaceOnUse"
                             color-interpolation-filters="sRGB"
                         >
-                            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                            <feFlood floodOpacity="0" result="BackgroundImageFix" />
                             <feGaussianBlur in="BackgroundImageFix" stdDeviation="15" />
                             <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_3_219" />
                             <feBlend
