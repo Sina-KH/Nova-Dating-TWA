@@ -28,6 +28,11 @@ function MyApp(props: AppProps) {
         // expand the app on launch
         window.Telegram?.WebApp?.expand();
 
+        // @ts-ignore
+        window.Telegram?.WebApp?.onEvent('backButtonClicked', () => {
+            router.back();
+        });
+
         // handle back button changes
         const handleRouteChange = (url: string) => {
             if (url.startsWith('/register'))
@@ -45,9 +50,6 @@ function MyApp(props: AppProps) {
             router.events.off('routeChangeStart', handleRouteChange);
         };
     }, []);
-
-    // @ts-ignore
-    window.Telegram?.WebApp?.onEvent('backButtonClicked', () => {});
 
     return (
         <>
