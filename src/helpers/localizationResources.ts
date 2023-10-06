@@ -26,13 +26,20 @@ const LocalizationResources = {
                     next: 'Next'
                 }
             },
+            explore: {
+                title: 'Discover',
+                interests: 'Interests'
+            },
             profile: {
+                title: 'Profile',
                 edit: {
-                    title: 'Profile',
+                    title: 'Edit Profile',
+                    basicInformation: 'Basic Information',
                     firstName: 'Firstname',
                     lastName: 'Lastname',
                     birthdate: 'Birthdate',
-                    edit: 'Save'
+                    edit: 'Save',
+                    gender: 'Gender'
                 }
             }
         }

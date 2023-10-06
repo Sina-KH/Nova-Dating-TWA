@@ -20,7 +20,7 @@ export default function MyTextField({ placeholder, value, onValueChanged }: Prop
                 <input
                     className="peer h-full w-full rounded-2xl pb-4 pt-6
                          border border-telegram-secondary-bg border-t-transparent bg-telegram-secondary-bg px-3 py-2.5
-                          text-sm font-normal text-telegram-text outline outline-0 transition-all
+                          font-normal text-telegram-text outline outline-0 transition-all
                            placeholder-shown:border placeholder-shown:border-telegram-secondary-bg
                             placeholder-shown:border-t-telegram-secondary-bg
                              focus:border-2 focus:border-telegram-button focus:outline-0

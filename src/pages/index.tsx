@@ -2,8 +2,8 @@ import IntroScreen from '@/screens/intro/IntroScreen';
 import type { NextPage } from 'next';
 import React from 'react';
 
-const Home: NextPage = () => {
+const IntroPage: NextPage = () => {
     return <IntroScreen />;
 };
 
-export default Home;
+export default IntroPage;

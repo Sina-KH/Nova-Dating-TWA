@@ -1,10 +1,8 @@
 import type { NextPage } from 'next';
-import Head from 'next/head';
-import ExploreScreen from '@/screens/explore/ExploreScreen';
-import EditProfileScreen from '@/screens/profile/EditProfileScreen';
+import ProfileScreen from '@/screens/profile/ProfileScreen';
 
 const ProfilePage: NextPage = () => {
-    return <EditProfileScreen />;
+    return <ProfileScreen />;
 };
 
 export default ProfilePage;
