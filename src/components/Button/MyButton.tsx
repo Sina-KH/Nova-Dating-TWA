@@ -3,13 +3,13 @@ import clsx from 'clsx';
 
 interface Props {
     className?: string;
-    disabled: boolean;
+    disabled?: boolean;
     children: React.ReactNode;
     onClick: () => void;
 }
 
 export default function MyButton({ className, disabled, onClick, children }: Props) {
-    return (
+    const button = (
         <button
             className={clsx(
                 'w-full cursor-none select-none text-telegram-button-text font-bold text-lg py-2 px-4 rounded-xl',
@@ -21,4 +21,5 @@ export default function MyButton({ className, disabled, onClick, children }: Pro
             {children}
         </button>
     );
+    return <>{className ? <div className={clsx('w-full', className)}>{button}</div> : button}</>;
 }

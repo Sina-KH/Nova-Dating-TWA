@@ -8,11 +8,8 @@ module.exports = {
     ],
     theme: {
         extend: {
-            // Fonts are being loaded on `src/pages/_document.tsx`, so if you want to
-            // change the font, you need to change the url there and name here.
             fontFamily: {
-                sans: ['var(--font-roboto)', ...defaultTheme.fontFamily.sans],
-                mono: ['var(--font-roboto-mono)', ...defaultTheme.fontFamily.mono]
+                poppins: ['Poppins']
             },
             colors: {
                 'telegram-bg': 'var(--telegram-bg-color)',
@@ -22,7 +19,8 @@ module.exports = {
                 'telegram-button': 'var(--telegram-button-color)',
                 'telegram-button-text': 'var(--telegram-button-text-color)',
                 'telegram-secondary-bg': 'var(--telegram-secondary-bg-color)',
-                'telegram-text-70': 'var(--telegram-text-70-color)'
+                'telegram-text-70': 'var(--telegram-text-70-color)',
+                'telegram-text-10': 'var(--telegram-text-10-color)'
             }
         }
     },

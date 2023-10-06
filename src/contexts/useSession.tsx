@@ -17,7 +17,6 @@ export function useSession() {
 function MySessionProvider(props: { children: React.ReactNode }) {
     const [sessionToken, setSessionToken] = useState<string | undefined>(undefined);
     const [user, setUser] = useState<IUser | undefined>(undefined);
-    const router = useRouter();
 
     // Send data to back-end service, validate hash and receive session token
     useEffect(() => {
@@ -33,24 +32,8 @@ function MySessionProvider(props: { children: React.ReactNode }) {
             .catch((e) => {});
     }, []);
 
-    // check if app should redirect to register
-    const dataLoaded = sessionToken?.length && !!user;
-    const shouldRedirectToRegister = dataLoaded && !router.pathname.startsWith('/register') && !user.interests;
-    if (shouldRedirectToRegister) {
-        let registerPath = '/register';
-        router.push(
-            {
-                pathname: registerPath
-            },
-            registerPath,
-            { shallow: true }
-        );
-    }
-
     return (
-        <MySessionContext.Provider value={{ sessionToken, user, setUser }}>
-            {dataLoaded && !shouldRedirectToRegister ? props.children : undefined}
-        </MySessionContext.Provider>
+        <MySessionContext.Provider value={{ sessionToken, user, setUser }}>{props.children}</MySessionContext.Provider>
     );
 }
 

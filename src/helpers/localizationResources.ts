@@ -1,6 +1,11 @@
 const LocalizationResources = {
     en: {
         translation: {
+            intro: {
+                title: 'Welcome to',
+                subtitle: 'Nova Dating',
+                get_started: "Let's go 🎉"
+            },
             register: {
                 profile: {
                     title: 'Profile',

@@ -13,9 +13,10 @@
         --telegram-secondary-bg-color: var(--tg-theme-secondary-bg-color, #f4f4f5);
 
         --telegram-text-70-color: rgba(var(--tg-theme-text-color, #000000), 0.7);
+        --telegram-text-10-color: rgba(var(--tg-theme-text-color, #000000), 0.1);
     }
 
     html {
-        @apply font-sans;
+        @apply font-poppins;
     }
 }

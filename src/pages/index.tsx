@@ -1,9 +1,9 @@
+import IntroScreen from '@/screens/intro/IntroScreen';
 import type { NextPage } from 'next';
-import Head from 'next/head';
-import ExploreScreen from '@/screens/explore/ExploreScreen';
+import React from 'react';
 
 const Home: NextPage = () => {
-    return <ExploreScreen />;
+    return <IntroScreen />;
 };
 
 export default Home;

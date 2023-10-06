@@ -7,6 +7,7 @@ function MyDocument() {
         <Html>
             <Head>
                 <Script src="https://telegram.org/js/telegram-web-app.js" strategy="beforeInteractive" />
+                <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
             </Head>
             <body>
                 <Main />

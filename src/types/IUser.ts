@@ -1,3 +1,8 @@
+export enum IUserStatus {
+    preRegistered = 0,
+    active = 1
+}
+
 export interface IUser {
     // public identifier
     pID: string;
@@ -11,8 +16,9 @@ export interface IUser {
     gender: 'male' | 'female';
     interests: any;
 
-    // passed if user is himself/herself
+    // passed if users requests for their own data
     birthdate?: string;
+    status?: IUserStatus;
 
     // age (passed for other users)
     age?: number;
