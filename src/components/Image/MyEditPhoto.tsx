@@ -81,7 +81,7 @@ export default function MyEditPhoto({ defaultImage, onImageSelect }: Props) {
                 height="32"
                 viewBox="0 0 33 32"
                 fill="none"
-                className="absolute bottom-0 right-0 w-6 h-6 m-4 -mr-2 -mb-2 fill-telegram-text-70"
+                className="absolute bottom-0 right-0 w-6 h-6 m-4 -mr-2 -mb-2"
             >
                 <g filter="url(#filter0_b_3_145)">
                     <rect x="0.972656" width="32" height="32" rx="10" fillOpacity="0.2" />

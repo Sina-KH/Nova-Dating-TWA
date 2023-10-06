@@ -12,6 +12,7 @@ interface Props {
 
 export default function MyDateField({ placeholder, value, onValueChanged }: Props) {
     const [isFocused, setFocused] = useState(false);
+    const [datePickerOpen, setDatePickerOpen] = useState(false);
     const twentyYearsAgo = useMemo(() => {
         return new Date(new Date().getTime() - 18 * 365 * 24 * 60 * 60 * 1000);
     }, []);
@@ -35,6 +36,7 @@ export default function MyDateField({ placeholder, value, onValueChanged }: Prop
                     onBlur={() => {
                         setFocused(false);
                     }}
+                    onClick={() => setDatePickerOpen(!datePickerOpen)}
                 >
                     <DatePicker
                         className="h-full w-full rounded-2xl pb-2 pt-4
@@ -58,6 +60,8 @@ export default function MyDateField({ placeholder, value, onValueChanged }: Prop
                         yearDropdownItemNumber={100}
                         minDate={hundredYearsAgo}
                         maxDate={twentyYearsAgo}
+                        readOnly={true}
+                        open={datePickerOpen}
                     />
                     <MyFieldPlaceholderLabel isFieldEmpty={!value} isFocused={isFocused} placeholder={placeholder} />
                 </div>

@@ -26,6 +26,11 @@ i18n.use(initReactI18next)
     .then();
 
 function MyApp(props: AppProps) {
+    useEffect(() => {
+        // expand the app on launch
+        window.Telegram?.WebApp?.expand();
+    }, []);
+
     return (
         <>
             <Head>

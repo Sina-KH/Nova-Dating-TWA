@@ -16,7 +16,7 @@ export function BottomNavigationTab({ path, icon, isSelected, selectedClassName 
         <button
             type="button"
             className={`${
-                isSelected ? selectedClassName : 'fill-telegram-text-70 stroke-telegram-text-70'
+                isSelected ? selectedClassName : 'stroke-telegram-text opacity-50'
             } inline-flex flex-col items-center justify-center`}
             onClick={() => {
                 router

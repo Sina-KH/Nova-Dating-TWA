@@ -18,8 +18,7 @@ module.exports = {
                 'telegram-link': 'var(--telegram-link-color)',
                 'telegram-button': 'var(--telegram-button-color)',
                 'telegram-button-text': 'var(--telegram-button-text-color)',
-                'telegram-secondary-bg': 'var(--telegram-secondary-bg-color)',
-                'telegram-text-70': 'var(--telegram-text-70-color)'
+                'telegram-secondary-bg': 'var(--telegram-secondary-bg-color)'
             }
         }
     },
