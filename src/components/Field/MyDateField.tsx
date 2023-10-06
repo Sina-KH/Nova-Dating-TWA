@@ -37,12 +37,12 @@ export default function MyDateField({ placeholder, value, onValueChanged }: Prop
                     }}
                 >
                     <DatePicker
-                        className="h-full w-full rounded-[7px]
-                         border border-telegram-secondary-bg border-t-transparent bg-transparent px-3 py-2.5
+                        className="h-full w-full rounded-2xl pb-2 pt-4
+                         border border-telegram-secondary-bg border-t-transparent bg-telegram-secondary-bg px-3 py-2.5
                           text-sm font-normal text-telegram-text outline outline-0 transition-all
                            placeholder-shown:border placeholder-shown:border-telegram-secondary-bg
                             placeholder-shown:border-t-telegram-secondary-bg
-                             focus:border-2 focus:border-telegram-button focus:border-t-transparent focus:outline-0
+                             focus:border-2 focus:border-telegram-button focus:outline-0
                               disabled:border-0 disabled:opacity-50"
                         selected={value ? new Date(value) : null}
                         placeholderText=" "

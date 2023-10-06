@@ -1,6 +1,7 @@
 import { ApiRequest, ApiRequestMethod } from '@/api/requests/IApiRequest';
+import { IUser } from '@/types/IUser';
 
-export class ProfileSetInterestsRequest extends ApiRequest<{ interests: string[] }, {}> {
+export class ProfileSetInterestsRequest extends ApiRequest<{ interests: string[] }, { user: IUser }> {
     path = 'profile/setInterests';
     method = ApiRequestMethod.POST;
 

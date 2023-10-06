@@ -12,18 +12,18 @@ export default function MyTextField({ placeholder, value, onValueChanged }: Prop
     return (
         <div className="w-full">
             <div
-                className="relative h-10 w-full"
+                className="relative w-full"
                 onBlur={() => {
                     setFocused(false);
                 }}
             >
                 <input
-                    className="peer h-full w-full rounded-[7px]
-                         border border-telegram-secondary-bg border-t-transparent bg-transparent px-3 py-2.5
+                    className="peer h-full w-full rounded-2xl pb-2 pt-4
+                         border border-telegram-secondary-bg border-t-transparent bg-telegram-secondary-bg px-3 py-2.5
                           text-sm font-normal text-telegram-text outline outline-0 transition-all
                            placeholder-shown:border placeholder-shown:border-telegram-secondary-bg
                             placeholder-shown:border-t-telegram-secondary-bg
-                             focus:border-2 focus:border-telegram-button focus:border-t-transparent focus:outline-0
+                             focus:border-2 focus:border-telegram-button focus:outline-0
                               disabled:border-0 disabled:opacity-50"
                     placeholder=" "
                     defaultValue={value}

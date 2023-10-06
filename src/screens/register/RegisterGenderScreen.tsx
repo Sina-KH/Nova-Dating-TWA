@@ -7,6 +7,8 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { ProfileSetGenderRequest } from '@/api/requests/profile/profileSetGenderRequest';
 import MyTitle from '@/components/Label/MyTitle';
+import MyGrowingContainer from '@/components/Containers/MyGrowingContainer';
+import MyStepper from '@/components/Stepper/MyStepper';
 
 export default function RegisterGenderScreen() {
     const { sessionToken } = useSession();
@@ -17,55 +19,58 @@ export default function RegisterGenderScreen() {
 
     return (
         <>
-            <Image src={'/logo.png'} alt={'logo'} width={320} height={180} />
+            <div className={'w-full h-full flex flex-col items-center space-y-10 pt-8 pb-8 pl-4 pr-4'}>
+                {/*Stepper*/}
+                <MyStepper currentStep={2} steps={3} />
 
-            <div className={'w-full flex flex-col items-start space-y-4 pl-4 pr-4'}>
                 <MyTitle>{t('register.gender.title')}</MyTitle>
-                <MyRadioSelect
-                    items={[
-                        {
-                            id: 'male',
-                            name: t('register.gender.male')
-                        },
-                        {
-                            id: 'female',
-                            name: t('register.gender.female')
-                        }
-                    ]}
-                    selectedID={selectedGender}
-                    onSelectionChanged={(selectedID: string) => {
-                        setSelectedGender(selectedID);
-                    }}
-                />
-            </div>
+                <MyGrowingContainer>
+                    <MyRadioSelect
+                        items={[
+                            {
+                                id: 'male',
+                                name: t('register.gender.male')
+                            },
+                            {
+                                id: 'female',
+                                name: t('register.gender.female')
+                            }
+                        ]}
+                        selectedID={selectedGender}
+                        onSelectionChanged={(selectedID: string) => {
+                            setSelectedGender(selectedID);
+                        }}
+                    />
+                </MyGrowingContainer>
 
-            <MyButton
-                disabled={!selectedGender.length}
-                onClick={() => {
-                    if (!selectedGender.length) return;
-                    if (isLoading) return;
-                    setIsLoading(true);
-                    new ProfileSetGenderRequest({ gender: selectedGender })
-                        .call(sessionToken)
-                        .then(() => {
-                            router
-                                .push(
-                                    {
-                                        pathname: '/register/interests'
-                                    },
-                                    '/register/interests',
-                                    { shallow: true }
-                                )
-                                .then();
-                        })
-                        .catch((err) => {
-                            console.log(err);
-                            setIsLoading(false);
-                        });
-                }}
-            >
-                {t('register.gender.next')}
-            </MyButton>
+                <MyButton
+                    disabled={!selectedGender.length}
+                    onClick={() => {
+                        if (!selectedGender.length) return;
+                        if (isLoading) return;
+                        setIsLoading(true);
+                        new ProfileSetGenderRequest({ gender: selectedGender })
+                            .call(sessionToken)
+                            .then(() => {
+                                router
+                                    .push(
+                                        {
+                                            pathname: '/register/interests'
+                                        },
+                                        '/register/interests',
+                                        { shallow: true }
+                                    )
+                                    .then();
+                            })
+                            .catch((err) => {
+                                console.log(err);
+                                setIsLoading(false);
+                            });
+                    }}
+                >
+                    {t('register.gender.next')}
+                </MyButton>
+            </div>
         </>
     );
 }

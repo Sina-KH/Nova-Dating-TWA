@@ -18,10 +18,8 @@ export default function MyRadioSelect(props: Props) {
                     <button
                         key={it.id}
                         className={clsx(
-                            'p-2 w-full cursor-none select-none rounded-xl font-bold',
-                            it.id == props.selectedID
-                                ? 'bg-telegram-button text-telegram-button-text'
-                                : 'border text-telegram-text'
+                            'border-2 p-2 w-full cursor-none select-none rounded-xl font-bold bg-telegram-secondary-bg',
+                            it.id == props.selectedID ? 'border-telegram-button' : ''
                         )}
                         onClick={() => {
                             props.onSelectionChanged?.(it.id);
@@ -29,20 +27,21 @@ export default function MyRadioSelect(props: Props) {
                     >
                         <div className={'flex flex-row justify-between items-center'}>
                             <p>{it.name}</p>
-                            <svg
-                                className={it.id == props.selectedID ? 'stroke-telegram-button-text' : 'opacity-0'}
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="20"
-                                height="20"
-                                viewBox="0 0 20 20"
-                                fill="none"
-                            >
-                                <path
-                                    d="M4.16666 9.99992L8.33332 14.1666L16.6667 5.83325"
-                                    strokeWidth="2"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
+                            <svg width="25" height="24" viewBox="0 0 25 24" fill="none">
+                                <g clipPath="url(#clip0_18_656)">
+                                    <circle cx="12.9727" cy="12" r="12" className={'fill-telegram-bg'} />
+                                    <circle
+                                        cx="12.9727"
+                                        cy="12"
+                                        r="6"
+                                        className={it.id == props.selectedID ? 'fill-telegram-button' : 'fill-none'}
+                                    />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_18_656">
+                                        <rect width="24" height="24" fill="white" transform="translate(0.972656)" />
+                                    </clipPath>
+                                </defs>
                             </svg>
                         </div>
                     </button>

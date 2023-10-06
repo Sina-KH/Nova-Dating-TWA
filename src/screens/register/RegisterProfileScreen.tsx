@@ -10,6 +10,7 @@ import MyEditPhoto from '@/components/Image/MyEditPhoto';
 import { ProfileEditRequest } from '@/api/requests/profile/profileEditRequest';
 import MyDateField from '@/components/Field/MyDateField';
 import { hashToImageURL, ImagePresentationType } from '@/helpers/mediaHelpers';
+import MyStepper from '@/components/Stepper/MyStepper';
 
 export default function RegisterProfileScreen() {
     const { sessionToken, user } = useSession();
@@ -23,6 +24,9 @@ export default function RegisterProfileScreen() {
 
     return (
         <div className={'w-full h-full pt-8 pb-8 flex flex-col items-start space-y-4 pl-4 pr-4'}>
+            {/*Stepper*/}
+            <MyStepper currentStep={1} steps={3} />
+
             <MyTitle>{t('register.profile.title')}</MyTitle>
 
             <MyGrowingContainer className={'flex flex-col gap-4 items-center'}>

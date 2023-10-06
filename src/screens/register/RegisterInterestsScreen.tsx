@@ -10,9 +10,10 @@ import { TagListRequest } from '@/api/requests/tagListRequest';
 import { ITag, ITagType } from '@/types/ITag';
 import MyGrowingContainer from '@/components/Containers/MyGrowingContainer';
 import { ProfileSetInterestsRequest } from '@/api/requests/profile/profileSetInterestsRequest';
+import MyStepper from '@/components/Stepper/MyStepper';
 
 export default function RegisterInterestsScreen() {
-    const { sessionToken } = useSession();
+    const { sessionToken, setUser } = useSession();
     const { t } = useTranslation();
     const [interests, setInterests] = useState<ITag[] | null>(null);
     const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
@@ -31,11 +32,14 @@ export default function RegisterInterestsScreen() {
     }, [sessionToken]);
 
     return (
-        <div className={'w-full h-full pt-8 pb-8 flex flex-col items-start space-y-4 pl-4 pr-4'}>
+        <div className={'w-full h-full flex flex-col items-start space-y-4 pt-8 pb-8 pl-4 pr-4'}>
+            {/*Stepper*/}
+            <MyStepper currentStep={3} steps={3} />
+
             <MyTitle>{t('register.interests.title')}</MyTitle>
             <MySubTitle>{t('register.interests.description')}</MySubTitle>
 
-            <MyGrowingContainer>
+            <MyGrowingContainer className={'flex-wrap'}>
                 {interests ? (
                     <MyTagsSelector
                         tags={interests}
@@ -45,35 +49,37 @@ export default function RegisterInterestsScreen() {
                         }}
                     />
                 ) : null}
-            </MyGrowingContainer>
 
-            <MyButton
-                disabled={!selectedInterests.length}
-                onClick={() => {
-                    if (!selectedInterests.length) return;
-                    if (isLoading) return;
-                    setIsLoading(true);
-                    new ProfileSetInterestsRequest({ interests: selectedInterests })
-                        .call(sessionToken)
-                        .then(() => {
-                            router
-                                .push(
-                                    {
-                                        pathname: '/explore'
-                                    },
-                                    '/explore',
-                                    { shallow: true }
-                                )
-                                .then();
-                        })
-                        .catch((err) => {
-                            console.log(err);
-                            setIsLoading(false);
-                        });
-                }}
-            >
-                {t('register.interests.next')}
-            </MyButton>
+                <MyButton
+                    className={'mt-4'}
+                    disabled={!selectedInterests.length}
+                    onClick={() => {
+                        if (!selectedInterests.length) return;
+                        if (isLoading) return;
+                        setIsLoading(true);
+                        new ProfileSetInterestsRequest({ interests: selectedInterests })
+                            .call(sessionToken)
+                            .then(({ user }) => {
+                                setUser(user);
+                                router
+                                    .push(
+                                        {
+                                            pathname: '/explore'
+                                        },
+                                        '/explore',
+                                        { shallow: true }
+                                    )
+                                    .then();
+                            })
+                            .catch((err) => {
+                                console.log(err);
+                                setIsLoading(false);
+                            });
+                    }}
+                >
+                    {t('register.interests.next')}
+                </MyButton>
+            </MyGrowingContainer>
         </div>
     );
 }

@@ -7,8 +7,10 @@ import Link from 'next/link';
 const MySessionContext = React.createContext<{
     sessionToken?: string;
     user?: IUser;
-    setUser?: (user: IUser | undefined) => void;
-}>({});
+    setUser: (user: IUser | undefined) => void;
+}>({
+    setUser: () => {}
+});
 
 export function useSession() {
     return useContext(MySessionContext);

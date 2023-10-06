@@ -12,6 +12,7 @@ import BottomNavigation from '@/components/BottomNavigation/BottomNavigation';
 import { useRouter } from 'next/router';
 import MyGrowingContainer from '@/components/Containers/MyGrowingContainer';
 import { IUserStatus } from '@/types/IUser';
+import clsx from 'clsx';
 
 i18n.use(initReactI18next)
     .init({
@@ -89,12 +90,12 @@ function MyAppContent({ Component, pageProps }: AppProps) {
 
     const showBottomNavigation = !!user && user.status !== IUserStatus.preRegistered;
     return (
-        <div className={'flex flex-col h-screen overflow-hidden'}>
-            <MyGrowingContainer className={showBottomNavigation ? 'pb-12' : ''}>
+        <div className={'flex flex-col h-screen'}>
+            <div className={clsx('h-full', showBottomNavigation ? 'pb-12' : '')}>
                 <MainContainer>
                     <Component {...pageProps} />
                 </MainContainer>
-            </MyGrowingContainer>
+            </div>
             {showBottomNavigation ? <BottomNavigation /> : undefined}
         </div>
     );

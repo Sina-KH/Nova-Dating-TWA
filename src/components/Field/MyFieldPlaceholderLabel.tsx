@@ -12,28 +12,14 @@ export default function MyFieldPlaceholderLabel({ placeholder, isFocused, isFiel
     return (
         <label
             className={clsx([
-                "before:content[' '] after:content[' ']" +
-                    ' pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none' +
+                'pointer-events-none absolute left-0 flex h-full w-full select-none' +
                     ' text-[11px] font-normal transition-all' +
                     ' before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border' +
-                    ' before:block before:h-1.5 before:w-2.5 before:rounded-tl-md' +
-                    ' before:border-t before:border-l before:transition-all' +
-                    ' after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block' +
-                    ' after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r' +
+                    ' before:block before:w-2.5' +
+                    ' after:pointer-events-none after:mt-[6.5px] after:ml-1 after:block' +
                     ' after:transition-all',
-                isFieldEmpty && !isFocused
-                    ? ' text-sm leading-[3.75]' +
-                      ' text-telegram-hint' +
-                      ' before:border-transparent' +
-                      ' after:border-transparent'
-                    : '',
-                isFocused
-                    ? ' text-[11px]' +
-                      ' leading-tight text-telegram-button before:border-t-2' +
-                      ' before:border-l-2 before:border-telegram-button' +
-                      ' after:border-t-2 after:border-r-2' +
-                      ' after:border-telegram-button'
-                    : 'text-telegram-hint before:border-telegram-secondary-bg after:border-telegram-secondary-bg'
+                isFieldEmpty && !isFocused ? ' text-sm leading-[3.75]' + ' text-telegram-hint -top-1' : 'top-1',
+                isFocused ? ' text-[11px]' + ' leading-tight text-telegram-button' : 'text-telegram-hint'
             ])}
         >
             {placeholder}

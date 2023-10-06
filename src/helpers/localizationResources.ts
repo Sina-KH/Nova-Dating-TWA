@@ -8,7 +8,7 @@ const LocalizationResources = {
             },
             register: {
                 profile: {
-                    title: 'Profile',
+                    title: 'Your Profile',
                     firstName: 'Firstname',
                     lastName: 'Lastname',
                     birthdate: 'Birthdate',
