@@ -26,7 +26,7 @@ export default function MyRadioSelect(props: Props) {
                         }}
                     >
                         <div className={'flex flex-row justify-between items-center'}>
-                            <p className={'text-telegram-text'}>{it.name}</p>
+                            <p>{it.name}</p>
                             <svg width="25" height="24" viewBox="0 0 25 24" fill="none">
                                 <g clipPath="url(#clip0_18_656)">
                                     <circle cx="12.9727" cy="12" r="12" className={'fill-telegram-bg'} />

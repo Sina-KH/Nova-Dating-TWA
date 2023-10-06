@@ -85,7 +85,7 @@ export default function MySwipeContainer({ users, userLiked, userDisliked, loadM
                     );
                 })}
             </div>
-            <MySwipeContainerActions />
+            {/*<MySwipeContainerActions />*/}
         </div>
     );
 }

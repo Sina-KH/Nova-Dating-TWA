@@ -32,7 +32,7 @@ export default function MyTagsSelector({ className, tags, selectedTags, onSelect
                     >
                         <div className={'flex flex-col items-center'}>
                             <Image width={32} height={32} src={relativePathToURL(it.icon)} alt={it.name} />
-                            <p className={'text-telegram-text'}>{it.name}</p>
+                            <p>{it.name}</p>
                         </div>
                     </button>
                 );

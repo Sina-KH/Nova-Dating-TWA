@@ -17,6 +17,10 @@
         @apply font-poppins;
     }
 
+    p {
+        color: var(--telegram-text-color)
+    }
+
     .color-scheme-dark {
         --telegram-bg-color: var(--tg-theme-secondary-bg-color, #000000);
         --telegram-secondary-bg-color: var(--tg-theme-bg-color, #0E1621);
