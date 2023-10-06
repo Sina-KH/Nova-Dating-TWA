@@ -21,7 +21,7 @@ export default function MyTagsSelector({ className, tags, selectedTags, onSelect
                             'p-2 cursor-none select-none rounded-full font-bold border-2 bg-telegram-secondary-bg',
                             selectedTags.indexOf(it._id) > -1
                                 ? 'border-telegram-button text-telegram-button'
-                                : 'text-telegram-text'
+                                : 'border-transparent text-telegram-text'
                         )}
                         onClick={() => {
                             if (selectedTags.indexOf(it._id) > -1)

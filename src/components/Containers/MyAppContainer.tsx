@@ -1,7 +1,7 @@
 import { AppProps } from 'next/app';
 import { useSession } from '@/contexts/useSession';
 import { useRouter } from 'next/router';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { IUserStatus } from '@/types/IUser';
 import clsx from 'clsx';
 import MainContainer from '@/components/Containers/MainContainer';
@@ -9,9 +9,15 @@ import BottomNavigation from '@/components/BottomNavigation/BottomNavigation';
 
 export default function MyAppContent({ Component, pageProps }: AppProps) {
     const { sessionToken, user } = useSession();
+    const [isDark, setIsDark] = useState(false);
     const dataLoaded = sessionToken?.length && !!user;
 
     const router = useRouter();
+
+    useEffect(() => {
+        // check if theme is dark. we switch secondary bg and primary bg on dark scheme
+        setIsDark(window.Telegram.WebApp.colorScheme === 'dark');
+    }, []);
 
     // callback on init data validation using back-end service
     useEffect(() => {
@@ -59,7 +65,7 @@ export default function MyAppContent({ Component, pageProps }: AppProps) {
 
     const showBottomNavigation = !!user && user.status !== IUserStatus.preRegistered;
     return (
-        <div className={'flex flex-col h-screen'}>
+        <div className={clsx('flex flex-col h-screen', isDark ? 'color-scheme-dark' : '')}>
             <div className={clsx('h-full', showBottomNavigation ? 'pb-12' : '')}>
                 <MainContainer>
                     <Component {...pageProps} />
