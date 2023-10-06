@@ -18,7 +18,7 @@ export default function MyRadioSelect(props: Props) {
                     <button
                         key={it.id}
                         className={clsx(
-                            'border-2 p-2 w-full cursor-none select-none rounded-xl font-bold bg-telegram-secondary-bg',
+                            'border-2 pl-2 pr-2 pt-4 pb-4 w-full cursor-none select-none rounded-2xl font-bold bg-telegram-secondary-bg',
                             it.id == props.selectedID ? 'border-telegram-button' : 'border-transparent'
                         )}
                         onClick={() => {

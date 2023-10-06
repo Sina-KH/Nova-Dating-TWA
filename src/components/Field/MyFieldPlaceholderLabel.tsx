@@ -18,7 +18,7 @@ export default function MyFieldPlaceholderLabel({ placeholder, isFocused, isFiel
                     ' before:block before:w-2.5' +
                     ' after:pointer-events-none after:mt-[6.5px] after:ml-1 after:block' +
                     ' after:transition-all',
-                isFieldEmpty && !isFocused ? ' text-sm leading-[3.75]' + ' text-telegram-hint -top-1' : 'top-1',
+                isFieldEmpty && !isFocused ? ' text-sm leading-[3.75]' + ' text-telegram-hint top-1' : 'top-2',
                 isFocused ? ' text-[11px]' + ' leading-tight text-telegram-button' : 'text-telegram-hint'
             ])}
         >
