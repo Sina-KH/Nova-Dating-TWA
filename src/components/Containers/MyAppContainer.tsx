@@ -15,8 +15,13 @@ export default function MyAppContent({ Component, pageProps }: AppProps) {
     const router = useRouter();
 
     useEffect(() => {
+        const isDark = window.Telegram.WebApp.colorScheme === 'dark';
         // check if theme is dark. we switch secondary bg and primary bg on dark scheme
-        setIsDark(window.Telegram.WebApp.colorScheme === 'dark');
+        setIsDark(isDark);
+        // @ts-ignore
+        window.Telegram?.WebApp?.setHeaderColor(isDark ? 'secondary_bg_color' : 'bg_color');
+        // @ts-ignore
+        window.Telegram?.WebApp?.setBackgroundColor(isDark ? 'secondary_bg_color' : 'bg_color');
     }, []);
 
     // callback on init data validation using back-end service
