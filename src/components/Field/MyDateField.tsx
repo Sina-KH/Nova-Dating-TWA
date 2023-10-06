@@ -36,7 +36,7 @@ export default function MyDateField({ placeholder, value, onValueChanged }: Prop
                     onBlur={() => {
                         setFocused(false);
                     }}
-                    onClick={() => setDatePickerOpen(!datePickerOpen)}
+                    onClick={() => setDatePickerOpen(true)}
                 >
                     <DatePicker
                         className="h-full w-full rounded-2xl pb-2 pt-4
