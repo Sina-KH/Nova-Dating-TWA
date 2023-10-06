@@ -65,7 +65,7 @@ export default function MyAppContent({ Component, pageProps }: AppProps) {
 
     const showBottomNavigation = !!user && user.status !== IUserStatus.preRegistered;
     return (
-        <div className={clsx('flex flex-col h-screen', isDark ? 'color-scheme-dark' : '')}>
+        <div className={clsx('bg-telegram-bg flex flex-col h-screen', isDark ? 'color-scheme-dark' : '')}>
             <div className={clsx('h-full', showBottomNavigation ? 'pb-12' : '')}>
                 <MainContainer>
                     <Component {...pageProps} />
