@@ -11,7 +11,7 @@ export default function ExploreUserCardImage({ user }: Props) {
                 <img
                     src={hashToImageURL(user.photo!.hash)!}
                     alt={'profile'}
-                    className={'w-full rounded-2xl aspect-w-1 aspect-h-1'}
+                    className={'w-full rounded-2xl aspect-square'}
                 />
             )}
             {/*top user data*/}
