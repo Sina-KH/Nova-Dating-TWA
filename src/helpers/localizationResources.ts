@@ -28,7 +28,19 @@ const LocalizationResources = {
             },
             explore: {
                 title: 'Discover',
-                interests: 'Interests'
+                interests: 'Interests',
+                empty: {
+                    title: 'Sorry',
+                    subTitle: 'No users found right now 😢',
+                    clear: 'Clear search filters'
+                },
+                filters: {
+                    title: 'Filters',
+                    clear: 'Clear',
+                    gender: 'Gender',
+                    age: 'Age',
+                    interests: 'Interests'
+                }
             },
             profile: {
                 title: 'Profile',

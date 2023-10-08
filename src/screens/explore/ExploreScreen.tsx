@@ -8,14 +8,31 @@ import { ReactionDislikeRequest } from '@/api/requests/reaction/reactionDislikeR
 import { LogoIcon } from '@/assets/logoIcon';
 import { useTranslation } from 'react-i18next';
 import MyIconButton from '@/components/Button/MyIconButton';
+import dynamic from 'next/dynamic';
+import { useRouter } from 'next/router';
+import { ProfileSetSearchFiltersRequest } from '@/api/requests/profile/profileSetSearchFiltersRequest';
+const EmptyCard = dynamic(() => import('@/components/Card/EmptyCard'), {
+    loading: () => <></>,
+    ssr: false
+});
 
 export default function ExploreScreen() {
+    const { sessionToken, user, setUser } = useSession();
     const [users, setUsers] = useState<Partial<IUser>[] | null>(null);
     const [isLoading, setIsLoading] = useState(false);
     const [isLoadMoreNeeded, setIsLoadMoreNeeded] = useState(false);
+    const [clearingSearchFilters, setClearingSearchFilters] = useState(false);
 
-    const { sessionToken } = useSession();
     const { t } = useTranslation();
+    const router = useRouter();
+
+    const userHasFilters =
+        user?.searchFilters?.searchGenders?.length ||
+        user?.searchFilters?.searchInterests?.length ||
+        user?.searchFilters?.searchAgeFrom ||
+        18 > 18 ||
+        user?.searchFilters?.searchAgeTo ||
+        100 < 100;
 
     // function to load users
     function exploreUsers() {
@@ -121,10 +138,49 @@ export default function ExploreScreen() {
         setIsLoadMoreNeeded(true);
     }
 
-    function filtersPressed() {}
+    function filtersPressed() {
+        const filtersPath = '/explore/filters';
+        router
+            .push(
+                {
+                    pathname: filtersPath
+                },
+                filtersPath,
+                { shallow: true }
+            )
+            .then();
+    }
+
+    // clear search filters and reload
+    function clearSearchFilters() {
+        if (clearingSearchFilters) return;
+        setClearingSearchFilters(true);
+        const searchFilters = {
+            searchAgeFrom: 18,
+            searchAgeTo: 100,
+            searchInterests: [],
+            searchGenders: []
+        };
+        new ProfileSetSearchFiltersRequest(searchFilters)
+            .call(sessionToken)
+            .then(() => {
+                setUser(
+                    user
+                        ? {
+                              ...user,
+                              searchFilters: searchFilters
+                          }
+                        : undefined
+                );
+                exploreUsers();
+                setClearingSearchFilters(false);
+            })
+            .catch(() => {
+                setClearingSearchFilters(false);
+            });
+    }
 
     if (isLoading) return <></>; // TODO::
-    if (!users?.length) return <></>; // TODO::
 
     return (
         <>
@@ -146,12 +202,29 @@ export default function ExploreScreen() {
                     onClick={filtersPressed}
                 />
             </div>
-            <MySwipeContainer
-                users={users || []}
-                userLiked={userLiked}
-                userDisliked={userDisliked}
-                loadMoreNeeded={loadMoreNeeded}
-            />
+            {users?.length ? (
+                <MySwipeContainer
+                    users={users || []}
+                    userLiked={userLiked}
+                    userDisliked={userDisliked}
+                    loadMoreNeeded={loadMoreNeeded}
+                />
+            ) : (
+                <div className={'flex-grow flex items-center pb-20'}>
+                    <EmptyCard
+                        title={t('explore.empty.title')}
+                        subTitle={t('explore.empty.subTitle')}
+                        action={
+                            userHasFilters
+                                ? {
+                                      title: t('explore.empty.clear'),
+                                      onClick: clearSearchFilters
+                                  }
+                                : undefined
+                        }
+                    />
+                </div>
+            )}
         </>
     );
 }

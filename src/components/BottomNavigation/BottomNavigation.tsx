@@ -82,7 +82,7 @@ export default function BottomNavigation({ className }: Props) {
     let selectedTab = router.pathname.split('/')[1];
     return (
         <div
-            className={clsx('fixed bottom-0 left-0 z-50 w-full', className)}
+            className={clsx('fixed bottom-0 left-0 z-50 w-full pointer-events-none', className)}
             style={{
                 height: '113px'
             }}
@@ -120,7 +120,9 @@ export default function BottomNavigation({ className }: Props) {
                     </filter>
                 </defs>
             </svg>
-            <div className={`absolute top-6 bottom-0 left-0 right-0 h-full flex flex-row items-center`}>
+            <div
+                className={`absolute top-6 bottom-0 left-0 right-0 h-full flex flex-row items-center pointer-events-auto`}
+            >
                 {tabs.map((it) => {
                     return (
                         <BottomNavigationTab

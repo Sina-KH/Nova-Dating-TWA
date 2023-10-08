@@ -1,30 +1,31 @@
 import { useSession } from '@/contexts/useSession';
 import { useTranslation } from 'react-i18next';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import MyButton from '@/components/Button/MyButton';
-import MyTextField from '@/components/Field/MyTextField';
-import MyEditPhoto from '@/components/Image/MyEditPhoto';
-import { ProfileEditRequest } from '@/api/requests/profile/profileEditRequest';
-import MyDateField from '@/components/Field/MyDateField';
-import { hashToImageURL, ImagePresentationType } from '@/helpers/mediaHelpers';
-import MyRadioSelect from '@/components/Select/MyRadioSelect';
 import MyTagsSelector from '@/components/Select/MyTagsSelector';
 import { ITag, ITagType } from '@/types/ITag';
 import { TagListRequest } from '@/api/requests/tagListRequest';
+import MySecondaryButton from '@/components/Button/MySecondaryButton';
+import MyMultiSelect from '@/components/Select/MyMultiSelect';
+import MyAgeSelector from '@/components/Select/MyAgeSelector';
+import { ProfileSetSearchFiltersRequest } from '@/api/requests/profile/profileSetSearchFiltersRequest';
 
 export default function SearchFiltersScreen() {
     const { sessionToken, user, setUser } = useSession();
-    const [firstName, setFirstName] = useState(user?.firstName);
-    const [lastName, setLastName] = useState(user?.lastName);
-    const [birthdate, setBirthdate] = useState(user?.birthdate ? new Date(user.birthdate) : undefined);
-    const [selectedImage, setSelectedImage] = useState<File | undefined>();
     const { t } = useTranslation();
     const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
-    const [selectedGender, setSelectedGender] = useState(user?.gender || '');
     const [interests, setInterests] = useState<ITag[] | null>(null);
-    const [selectedInterests, setSelectedInterests] = useState<string[]>(user?.searchFilters?.searchInterests || []);
+    const [selectedSearchGenders, setSelectedSearchGenders] = useState(user?.searchFilters?.searchGenders || []);
+    const [sliderKey, setSliderKey] = useState(0);
+    const [selectedAge, setSelectedAge] = useState([
+        user?.searchFilters?.searchAgeFrom || 18,
+        user?.searchFilters?.searchAgeTo || 100
+    ]);
+    const [selectedSearchInterests, setSelectedSearchInterests] = useState<string[]>(
+        user?.searchFilters?.searchInterests || []
+    );
 
     useEffect(() => {
         new TagListRequest({ type: ITagType.interests })
@@ -37,100 +38,104 @@ export default function SearchFiltersScreen() {
             });
     }, [sessionToken]);
 
+    function clearSearchFiltersPressed() {
+        // clear search filters
+        setSelectedSearchGenders([]);
+        setSelectedSearchInterests([]);
+        setSelectedAge([18, 100]);
+        setSliderKey(sliderKey + 1);
+    }
+
     return (
         <div className={'w-full h-full flex flex-col items-center space-y-4 p-8 overflow-y-scroll'}>
-            <div className={'w-full flex flex-row pb-4 items-center gap-2'}>
-                <p className={'font-bold text-2xl flex-grow text-center'}>{t('profile.edit.title')}</p>
+            <div className={'relative w-full pb-4 items-center'}>
+                <MySecondaryButton
+                    onClick={() => {
+                        clearSearchFiltersPressed();
+                    }}
+                    className={'absolute top-0 bottom-4'}
+                >
+                    {t('explore.filters.clear')}
+                </MySecondaryButton>
+                <p className={'font-bold text-2xl flex-grow text-center'}>{t('explore.filters.title')}</p>
             </div>
 
             <div className={'w-full flex flex-col gap-4 items-center'}>
-                {/*Profile image selector*/}
-                <MyEditPhoto
-                    defaultImage={hashToImageURL(user?.photo?.hash, ImagePresentationType.medium)}
-                    onImageSelect={(newImage) => {
-                        setSelectedImage(newImage);
-                    }}
-                />
-                <p className={'w-full'}>{t('profile.edit.basicInformation')}</p>
-                {/*Firstname*/}
-                <MyTextField
-                    placeholder={t('profile.edit.firstName')}
-                    value={firstName}
-                    onValueChanged={(newValue) => {
-                        setFirstName(newValue);
-                    }}
-                />
-                {/*Lastname*/}
-                <MyTextField
-                    placeholder={t('profile.edit.lastName')}
-                    value={lastName}
-                    onValueChanged={(newValue) => {
-                        setLastName(newValue);
-                    }}
-                />
-                {/*Birthdate*/}
-                <MyDateField
-                    placeholder={t('profile.edit.birthdate')}
-                    value={birthdate}
-                    onValueChanged={(newValue) => {
-                        setBirthdate(newValue);
-                    }}
-                />
                 {/*Gender selection*/}
-                <p className={'w-full pt-6'}>{t('profile.edit.gender')}</p>
-                <MyRadioSelect
-                    items={[
-                        {
-                            id: 'male',
-                            name: t('register.gender.male')
-                        },
-                        {
-                            id: 'female',
-                            name: t('register.gender.female')
-                        }
-                    ]}
-                    selectedID={selectedGender}
-                    onSelectionChanged={(selectedID: string) => {
-                        setSelectedGender(selectedID);
-                    }}
-                />
-                {/*Interests*/}
-                <p className={'w-full pt-6'}>{t('profile.edit.gender')}</p>
-                {interests ? (
-                    <MyTagsSelector
-                        tags={interests}
-                        selectedTags={selectedInterests}
-                        onSelectionChanged={(newSelection) => {
-                            setSelectedInterests(newSelection);
+                <div className={'w-full rounded-3xl p-4 bg-telegram-secondary-bg'}>
+                    <p className={'w-full mb-2 font-bold'}>{t('explore.filters.gender')}</p>
+                    <MyMultiSelect
+                        items={[
+                            {
+                                id: 'male',
+                                name: t('register.gender.male')
+                            },
+                            {
+                                id: 'female',
+                                name: t('register.gender.female')
+                            }
+                        ]}
+                        selectedItems={selectedSearchGenders}
+                        onSelectionChanged={(selectedIDs: string[]) => {
+                            setSelectedSearchGenders(selectedIDs);
                         }}
                     />
-                ) : null}
+                </div>
+                {/*Age selection*/}
+                <div className={'w-full rounded-3xl p-4 bg-telegram-secondary-bg'}>
+                    <p className={'w-full mb-2 font-bold'}>{t('explore.filters.age')}</p>
+                    <MyAgeSelector
+                        key={sliderKey}
+                        className="w-full h-8"
+                        defaultValue={selectedAge}
+                        onChange={(value) => {
+                            setSelectedAge(value);
+                        }}
+                    />
+                </div>
+                {/*Interests*/}
+                <div className={'w-full rounded-3xl p-4 bg-telegram-secondary-bg'}>
+                    <p className={'w-full mb-2 font-bold'}>{t('explore.filters.interests')}</p>
+                    {interests ? (
+                        <MyTagsSelector
+                            tags={interests}
+                            selectedTags={selectedSearchInterests}
+                            onSelectionChanged={(newSelection) => {
+                                setSelectedSearchInterests(newSelection);
+                            }}
+                            defaultBackground={'bg-telegram-bg'}
+                        />
+                    ) : null}
+                </div>
             </div>
 
             <MyButton
                 onClick={() => {
-                    if (!birthdate || (!firstName?.length && !lastName?.length)) return;
-                    if (!selectedGender.length || !selectedInterests.length) return;
                     if (isLoading) return;
                     setIsLoading(true);
-                    new ProfileEditRequest({
-                        firstName: firstName ?? '',
-                        lastName: lastName ?? '',
-                        birthdate: birthdate.toISOString(),
-                        gender: selectedGender,
-                        interests: selectedInterests.join(','),
-                        photo: selectedImage
-                    })
+                    const searchFilters = {
+                        searchGenders: selectedSearchGenders,
+                        searchInterests: selectedSearchInterests,
+                        searchAgeFrom: selectedAge[0],
+                        searchAgeTo: selectedAge[1]
+                    };
+                    new ProfileSetSearchFiltersRequest(searchFilters)
                         .call(sessionToken)
-                        .then(({ user }) => {
-                            console.log({ user });
-                            setUser(user);
+                        .then(({}) => {
+                            setUser(
+                                user
+                                    ? {
+                                          ...user,
+                                          searchFilters
+                                      }
+                                    : undefined
+                            );
                             router
                                 .push(
                                     {
-                                        pathname: '/profile'
+                                        pathname: '/explore'
                                     },
-                                    '/profile',
+                                    '/explore',
                                     { shallow: true }
                                 )
                                 .then();

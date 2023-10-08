@@ -22,7 +22,10 @@ export interface IUser {
     birthdate?: string;
     status?: IUserStatus;
     searchFilters?: {
+        searchGenders?: string[];
         searchInterests?: string[];
+        searchAgeFrom?: number;
+        searchAgeTo?: number;
     };
 
     // age (passed for other users)

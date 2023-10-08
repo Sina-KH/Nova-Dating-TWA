@@ -8,31 +8,37 @@ interface Props {
     tags: ITag[];
     selectedTags: string[];
     onSelectionChanged?: (newSelection: string[]) => void;
+    defaultBackground?: string;
 }
 
-export default function MyTagsSelector({ className, tags, selectedTags, onSelectionChanged }: Props) {
+export default function MyTagsSelector({
+    className,
+    tags,
+    selectedTags,
+    onSelectionChanged,
+    defaultBackground
+}: Props) {
     return (
         <div className={clsx('w-full grid grid-cols-2 gap-2', className)}>
             {tags.map((it) => {
+                const isSelected = selectedTags.indexOf(it._id) > -1;
                 return (
                     <button
                         key={it._id}
                         className={clsx(
-                            'p-2 select-none rounded-full border-2 bg-telegram-secondary-bg',
-                            selectedTags.indexOf(it._id) > -1
-                                ? 'border-telegram-button text-telegram-button'
-                                : 'border-transparent text-telegram-text'
+                            'p-2 select-none rounded-full border-2',
+                            defaultBackground || 'bg-telegram-secondary-bg',
+                            isSelected ? 'border-telegram-button' : 'border-transparent'
                         )}
                         onClick={() => {
-                            if (selectedTags.indexOf(it._id) > -1)
-                                selectedTags = selectedTags.filter((selectedTag) => selectedTag !== it._id);
+                            if (isSelected) selectedTags = selectedTags.filter((selectedTag) => selectedTag !== it._id);
                             else selectedTags.push(it._id);
                             onSelectionChanged?.([...selectedTags]);
                         }}
                     >
                         <div className={'flex flex-col items-center'}>
                             <Image width={32} height={32} src={relativePathToURL(it.icon)} alt={it.name} />
-                            <p>{it.name}</p>
+                            <p className={isSelected ? 'text-telegram-button' : 'text-telegram-text'}>{it.name}</p>
                         </div>
                     </button>
                 );
