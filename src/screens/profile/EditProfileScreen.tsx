@@ -110,6 +110,7 @@ export default function EditProfileScreen() {
             </div>
 
             <MyButton
+                isLoading={isLoading}
                 onClick={() => {
                     if (!birthdate || (!firstName?.length && !lastName?.length)) return;
                     if (!selectedGender.length || !selectedInterests.length) return;

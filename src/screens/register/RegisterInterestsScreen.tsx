@@ -53,6 +53,7 @@ export default function RegisterInterestsScreen() {
                 <MyButton
                     className={'mt-4'}
                     disabled={!selectedInterests.length}
+                    isLoading={isLoading}
                     onClick={() => {
                         if (!selectedInterests.length) return;
                         if (isLoading) return;

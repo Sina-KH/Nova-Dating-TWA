@@ -45,6 +45,7 @@ export default function RegisterGenderScreen() {
 
                 <MyButton
                     disabled={!selectedGender.length}
+                    isLoading={isLoading}
                     onClick={() => {
                         if (!selectedGender.length) return;
                         if (isLoading) return;

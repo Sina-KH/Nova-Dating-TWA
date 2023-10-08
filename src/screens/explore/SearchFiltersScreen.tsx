@@ -110,6 +110,7 @@ export default function SearchFiltersScreen() {
             </div>
 
             <MyButton
+                isLoading={isLoading}
                 onClick={() => {
                     if (isLoading) return;
                     setIsLoading(true);

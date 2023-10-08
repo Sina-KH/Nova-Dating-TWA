@@ -64,9 +64,17 @@ export default function RegisterProfileScreen() {
             </MyGrowingContainer>
 
             <MyButton
-                disabled={(!user?.photo && !selectedImage) || (!firstName?.length && !lastName?.length)}
+                disabled={
+                    //(!user?.photo && !selectedImage) ||
+                    !firstName?.length && !lastName?.length
+                }
+                isLoading={isLoading}
                 onClick={() => {
-                    if ((!user?.photo && !selectedImage) || !birthdate || (!firstName?.length && !lastName?.length))
+                    if (
+                        //(!user?.photo && !selectedImage) ||
+                        !birthdate ||
+                        (!firstName?.length && !lastName?.length)
+                    )
                         return;
                     if (isLoading) return;
                     setIsLoading(true);
