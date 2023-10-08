@@ -35,7 +35,7 @@ function MyApp(props: AppProps) {
 
         // handle back button changes
         const handleRouteChange = (url: string) => {
-            if (url.startsWith('/register'))
+            if (url.startsWith('/register') || url.split('/').filter((it) => it.length).length > 1)
                 // @ts-ignore
                 window.Telegram?.WebApp?.BackButton?.show();
             // @ts-ignore

@@ -110,6 +110,7 @@ export default function MyAppContent({ Component, pageProps }: AppProps) {
                     showBottomNavigation ? 'opacity-100' : 'opacity-0 pointer-events-none',
                     'transition-opacity duration-1000'
                 )}
+                disabled={!showBottomNavigation}
             />
         </div>
     );

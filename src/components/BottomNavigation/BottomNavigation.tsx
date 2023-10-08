@@ -76,8 +76,9 @@ const tabs = [
 
 interface Props {
     className: string;
+    disabled?: boolean;
 }
-export default function BottomNavigation({ className }: Props) {
+export default function BottomNavigation({ className, disabled }: Props) {
     const router = useRouter();
     let selectedTab = router.pathname.split('/')[1];
     return (
@@ -121,7 +122,10 @@ export default function BottomNavigation({ className }: Props) {
                 </defs>
             </svg>
             <div
-                className={`absolute top-6 bottom-0 left-0 right-0 h-full flex flex-row items-center pointer-events-auto`}
+                className={clsx(
+                    `absolute top-6 bottom-0 left-0 right-0 h-full flex flex-row items-center`,
+                    disabled ? '' : 'pointer-events-auto'
+                )}
             >
                 {tabs.map((it) => {
                     return (
