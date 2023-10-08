@@ -13,6 +13,7 @@ import { LogoIcon } from '@/assets/logoIcon';
 import MyIconButton from '@/components/Button/MyIconButton';
 import ExploreUserCardImage from '@/components/Card/ExploreUserCard/ExploreUserCardImage';
 import ExploreUserCardInterests from '@/components/Card/ExploreUserCard/ExploreUserCardInterests';
+import MyPromotionLabel from '@/components/Label/MyPromotionLabel';
 
 export default function ProfileScreen() {
     const { user } = useSession();
@@ -39,7 +40,7 @@ export default function ProfileScreen() {
         <div className={'w-full h-full flex flex-col items-center p-8 overflow-y-scroll'}>
             <div className={'w-full flex flex-row pb-8 items-center gap-2'}>
                 <LogoIcon />
-                <p className={'font-bold text-2xl flex-grow'}>{t('profile.title')}</p>
+                <MyPromotionLabel className={'font-bold text-2xl flex-grow'} text={t('profile.title')} />
                 {/*Edit profile button*/}
                 <MyIconButton
                     icon={

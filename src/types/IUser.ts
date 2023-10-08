@@ -6,6 +6,8 @@ export enum IUserStatus {
 }
 
 export interface IUser {
+    _id?: string;
+
     // public identifier
     pID: string;
 

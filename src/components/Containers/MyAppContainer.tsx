@@ -30,7 +30,10 @@ export default function MyAppContent({ Component, pageProps }: AppProps) {
         // check if app should redirect user to home or register
         if (!dataLoaded) return;
         // check if we should redirect user to home
-        if (user?.status !== IUserStatus.preRegistered) {
+        if (
+            user?.status !== IUserStatus.preRegistered &&
+            (router.pathname === '/' || router.pathname.startsWith('/register'))
+        ) {
             let homePath = '/explore';
             router
                 .push(

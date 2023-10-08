@@ -53,6 +53,10 @@ const LocalizationResources = {
                     edit: 'Save',
                     gender: 'Gender'
                 }
+            },
+            matches: {
+                title: 'Matches',
+                startChat: 'Start chat'
             }
         }
     }

@@ -11,6 +11,8 @@ import MyIconButton from '@/components/Button/MyIconButton';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import { ProfileSetSearchFiltersRequest } from '@/api/requests/profile/profileSetSearchFiltersRequest';
+import MyLoadingView from '@/components/Loading/MyLoadingView';
+import MyPromotionLabel from '@/components/Label/MyPromotionLabel';
 const EmptyCard = dynamic(() => import('@/components/Card/EmptyCard'), {
     loading: () => <></>,
     ssr: false
@@ -189,7 +191,7 @@ export default function ExploreScreen() {
         <>
             <div className={'w-full flex flex-row p-8 items-center gap-2'}>
                 <LogoIcon />
-                <p className={'font-bold text-2xl flex-grow'}>{t('explore.title')}</p>
+                <MyPromotionLabel className={'font-bold text-2xl flex-grow'} text={t('explore.title')} />
                 {/*Filters button*/}
                 <MyIconButton
                     icon={
@@ -215,11 +217,7 @@ export default function ExploreScreen() {
                 />
             ) : isLoading ? (
                 // Loading View
-                <div className={'relative flex-grow flex items-center pb-20'}>
-                    <div className="absolute inset-0 flex items-center justify-center px-4">
-                        <div className="w-6 h-6 border-t-2 border-b-2 border-telegram-button rounded-full animate-spin"></div>
-                    </div>
-                </div>
+                <MyLoadingView />
             ) : (
                 <div className={'flex-grow flex items-center pb-20'}>
                     <EmptyCard
