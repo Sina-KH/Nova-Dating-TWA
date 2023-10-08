@@ -1,8 +1,8 @@
 import MySecondaryButton from '@/components/Button/MySecondaryButton';
 
 interface Props {
-    title: string;
-    subTitle: string;
+    title?: string;
+    subTitle?: string;
     action?: {
         title: string;
         onClick: () => void;

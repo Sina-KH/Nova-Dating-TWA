@@ -22,6 +22,7 @@ export default function ExploreScreen() {
     const [isLoading, setIsLoading] = useState(false);
     const [isLoadMoreNeeded, setIsLoadMoreNeeded] = useState(false);
     const [clearingSearchFilters, setClearingSearchFilters] = useState(false);
+    const [swiperKey, setSwiperKey] = useState(0);
 
     const { t } = useTranslation();
     const router = useRouter();
@@ -40,6 +41,7 @@ export default function ExploreScreen() {
             .call(sessionToken)
             .then(({ users }) => {
                 setUsers(users);
+                setSwiperKey(swiperKey + 1);
                 setIsLoading(false);
             })
             .catch((err) => {
@@ -57,9 +59,11 @@ export default function ExploreScreen() {
     useEffect(() => {
         // check if `load more needed` and all the reactions are processed
         if (isLoadMoreNeeded) {
-            setIsLoadMoreNeeded(false);
             const allReactionsProcessed = (users || []).findIndex((it) => it.reactReqInProgress) < 0;
-            if (allReactionsProcessed) exploreUsers();
+            if (allReactionsProcessed) {
+                setIsLoadMoreNeeded(false);
+                exploreUsers();
+            }
         }
     }, [isLoadMoreNeeded, users]);
 
@@ -180,8 +184,6 @@ export default function ExploreScreen() {
             });
     }
 
-    if (isLoading) return <></>; // TODO::
-
     return (
         <>
             <div className={'w-full flex flex-row p-8 items-center gap-2'}>
@@ -204,11 +206,19 @@ export default function ExploreScreen() {
             </div>
             {users?.length ? (
                 <MySwipeContainer
+                    key={swiperKey}
                     users={users || []}
                     userLiked={userLiked}
                     userDisliked={userDisliked}
                     loadMoreNeeded={loadMoreNeeded}
                 />
+            ) : isLoading ? (
+                // Loading View
+                <div className={'relative flex-grow flex items-center pb-20'}>
+                    <div className="absolute inset-0 flex items-center justify-center px-4">
+                        <div className="w-6 h-6 border-t-2 border-b-2 border-telegram-button rounded-full animate-spin"></div>
+                    </div>
+                </div>
             ) : (
                 <div className={'flex-grow flex items-center pb-20'}>
                     <EmptyCard

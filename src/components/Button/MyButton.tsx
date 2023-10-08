@@ -21,7 +21,7 @@ export default function MyButton({ className, disabled, onClick, children, isLoa
             {children}
             {isLoading ? (
                 <div className="absolute inset-0 flex items-center justify-end px-4">
-                    <div className="w-6 h-6 border-t-2 border-b-2 border-blue-200 rounded-full animate-spin"></div>
+                    <div className="w-6 h-6 border-t-2 border-b-2 border-telegram-button opacity-20 rounded-full animate-spin"></div>
                 </div>
             ) : undefined}
         </button>
