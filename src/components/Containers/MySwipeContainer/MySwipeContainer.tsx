@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { TouchEvent, useState } from 'react';
 import { useSwipeable } from 'react-swipeable';
 import { SwipeEventData } from 'react-swipeable/src/types';
 import { IUser } from '@/types/IUser';
@@ -65,8 +65,19 @@ export default function MySwipeContainer({ users, userLiked, userDisliked, loadM
         onSwiped: handleSwiped
     });
 
+    const handleTouchStart = (event: TouchEvent) => {
+        event.stopPropagation(); // Prevent touchstart event from propagating to the parent
+    };
+    const handleTouchMove = (event: TouchEvent) => {
+        event.stopPropagation(); // Prevent touchmove event from propagating to the parent
+    };
+
     return (
-        <div className={'flex flex-col w-full h-full overflow-x-hidden'}>
+        <div
+            className={'flex flex-col w-full h-full overflow-x-hidden'}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+        >
             {/*swipe container*/}
             <div className="relative swipe-container w-full h-full" {...handlers}>
                 {users.map((user, index) => {

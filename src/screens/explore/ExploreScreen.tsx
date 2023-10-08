@@ -37,6 +37,7 @@ export default function ExploreScreen() {
 
     // function to load users
     function exploreUsers() {
+        setIsLoading(true);
         new ExploreUsersRequest({})
             .call(sessionToken)
             .then(({ users }) => {
