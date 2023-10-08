@@ -91,9 +91,16 @@ export default function MatchesScreen() {
                                     <MyButton
                                         className={'mt-1'}
                                         onClick={() => {
-                                            router.push('tg://user?id=48656726');
-                                            if (peerUser._id?.startsWith('t_'))
-                                                router.push('tg://user?id=' + peerUser._id!.substring(2)).then();
+                                            if (peerUser._id?.startsWith('t_')) {
+                                                // @ts-ignore
+                                                const openTelegramLink = window.Telegram?.WebApp?.openTelegramLink;
+                                                const link = 'tg://user?id=' + peerUser._id;
+                                                if (openTelegramLink) {
+                                                    openTelegramLink(link);
+                                                } else {
+                                                    router.push('tg://user?id=' + peerUser._id!.substring(2)).then();
+                                                }
+                                            }
                                         }}
                                     >
                                         <div className={'flex flex-row justify-center items-center'}>
