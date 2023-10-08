@@ -17,7 +17,7 @@ export function BottomNavigationTab({ path, icon, isSelected, selectedClassName 
             type="button"
             className={`${
                 isSelected ? selectedClassName : 'stroke-telegram-text opacity-50'
-            } cursor-none select-none flex flex-grow items-center justify-center`}
+            } select-none flex flex-grow items-center justify-center`}
             onClick={() => {
                 router
                     .push(

@@ -18,7 +18,7 @@ export default function MyTagsSelector({ className, tags, selectedTags, onSelect
                     <button
                         key={it._id}
                         className={clsx(
-                            'p-2 cursor-none select-none rounded-full border-2 bg-telegram-secondary-bg',
+                            'p-2 select-none rounded-full border-2 bg-telegram-secondary-bg',
                             selectedTags.indexOf(it._id) > -1
                                 ? 'border-telegram-button text-telegram-button'
                                 : 'border-transparent text-telegram-text'

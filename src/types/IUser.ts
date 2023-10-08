@@ -1,3 +1,5 @@
+import { ITag } from '@/types/ITag';
+
 export enum IUserStatus {
     preRegistered = 0,
     active = 1
@@ -19,6 +21,9 @@ export interface IUser {
     // passed if users requests for their own data
     birthdate?: string;
     status?: IUserStatus;
+    searchFilters?: {
+        searchInterests?: string[];
+    };
 
     // age (passed for other users)
     age?: number;

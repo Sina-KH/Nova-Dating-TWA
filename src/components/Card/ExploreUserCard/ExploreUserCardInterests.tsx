@@ -19,7 +19,7 @@ export default function ExploreUserCardInterests({ user }: Props) {
                         <div
                             key={it._id}
                             className={clsx(
-                                'p-2 cursor-none select-none rounded-full font-bold border-2 bg-telegram-secondary-bg',
+                                'p-2 select-none rounded-full font-bold border-2 bg-telegram-secondary-bg',
                                 'border-transparent text-telegram-text'
                             )}
                         >
