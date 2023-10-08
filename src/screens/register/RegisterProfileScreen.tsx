@@ -66,7 +66,7 @@ export default function RegisterProfileScreen() {
             <MyButton
                 disabled={
                     //(!user?.photo && !selectedImage) ||
-                    !firstName?.length && !lastName?.length
+                    !birthdate || (!firstName?.length && !lastName?.length)
                 }
                 isLoading={isLoading}
                 onClick={() => {

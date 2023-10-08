@@ -13,11 +13,15 @@ interface Props {
 export default function MyDateField({ placeholder, value, onValueChanged }: Props) {
     const [isFocused, setFocused] = useState(false);
     const [datePickerOpen, setDatePickerOpen] = useState(false);
-    const twentyYearsAgo = useMemo(() => {
-        return new Date(new Date().getTime() - 18 * 365 * 24 * 60 * 60 * 1000);
+    const eighteenYearsAgo = useMemo(() => {
+        const d = new Date();
+        d.setFullYear(d.getFullYear() - 18);
+        return d;
     }, []);
     const hundredYearsAgo = useMemo(() => {
-        return new Date(new Date().getTime() - 100 * 365 * 24 * 60 * 60 * 1000);
+        const d = new Date();
+        d.setFullYear(d.getFullYear() - 100);
+        return d;
     }, []);
     return (
         <>
@@ -62,7 +66,7 @@ export default function MyDateField({ placeholder, value, onValueChanged }: Prop
                         scrollableYearDropdown
                         yearDropdownItemNumber={100}
                         minDate={hundredYearsAgo}
-                        maxDate={twentyYearsAgo}
+                        maxDate={eighteenYearsAgo}
                         readOnly={true}
                         open={datePickerOpen}
                     />

@@ -189,7 +189,7 @@ export default function ExploreScreen() {
 
     return (
         <>
-            <div className={'w-full flex flex-row p-8 items-center gap-2'}>
+            <div className={'w-full h-full flex flex-row p-8 items-center gap-2'}>
                 <LogoIcon />
                 <MyPromotionLabel className={'font-bold text-2xl flex-grow'} text={t('explore.title')} />
                 {/*Filters button*/}
