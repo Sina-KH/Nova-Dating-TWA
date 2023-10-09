@@ -1,6 +1,6 @@
 {
   "name": "novadating-twa",
-  "version": "0.10.5",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",

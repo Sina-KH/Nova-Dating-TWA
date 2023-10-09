@@ -57,7 +57,8 @@ const LocalizationResources = {
             },
             matches: {
                 title: 'Matches',
-                startChat: 'Start chat'
+                startChat: 'Start chat',
+                linkSent: 'Link sent'
             },
             cropper: {
                 title: 'Crop',
