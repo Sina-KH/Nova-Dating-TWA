@@ -12,6 +12,7 @@ import MyRadioSelect from '@/components/Select/MyRadioSelect';
 import MyTagsSelector from '@/components/Select/MyTagsSelector';
 import { ITag, ITagType } from '@/types/ITag';
 import { TagListRequest } from '@/api/requests/tagListRequest';
+import MyPhotoCropper from '@/components/Image/MyPhotoCropper';
 
 export default function EditProfileScreen() {
     const { sessionToken, user, setUser } = useSession();
@@ -19,6 +20,7 @@ export default function EditProfileScreen() {
     const [lastName, setLastName] = useState(user?.lastName);
     const [birthdate, setBirthdate] = useState(user?.birthdate ? new Date(user.birthdate) : undefined);
     const [selectedImage, setSelectedImage] = useState<File | undefined>();
+    const [selectedImagePreview, setSelectedImagePreview] = useState<string | undefined>(undefined);
     const { t } = useTranslation();
     const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
@@ -39,6 +41,27 @@ export default function EditProfileScreen() {
             });
     }, [sessionToken]);
 
+    // cropper
+    const [imageToCrop, setImageToCrop] = useState<Blob | undefined>(undefined);
+    if (imageToCrop)
+        return (
+            <MyPhotoCropper
+                selectedFile={imageToCrop}
+                onCancel={() => {
+                    setImageToCrop(undefined);
+                }}
+                onSubmit={(selectedImage) => {
+                    setSelectedImage(selectedImage);
+                    setImageToCrop(undefined);
+                    const reader = new FileReader();
+                    reader.onloadend = () => {
+                        setSelectedImagePreview(reader.result as string);
+                    };
+                    reader.readAsDataURL(selectedImage);
+                }}
+            />
+        );
+
     return (
         <div className={'w-full h-full flex flex-col items-center space-y-4 p-8 overflow-y-scroll'}>
             <div className={'w-full flex flex-row pb-4 items-center gap-2'}>
@@ -48,9 +71,11 @@ export default function EditProfileScreen() {
             <div className={'w-full flex flex-col gap-4 items-center'}>
                 {/*Profile image selector*/}
                 <MyEditPhoto
-                    defaultImage={hashToImageURL(user?.photo?.hash, ImagePresentationType.medium)}
+                    defaultImage={
+                        selectedImagePreview || hashToImageURL(user?.photo?.hash, ImagePresentationType.medium)
+                    }
                     onImageSelect={(newImage) => {
-                        setSelectedImage(newImage);
+                        setImageToCrop(newImage);
                     }}
                 />
                 <p className={'w-full'}>{t('profile.edit.basicInformation')}</p>

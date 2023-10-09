@@ -57,6 +57,11 @@ const LocalizationResources = {
             matches: {
                 title: 'Matches',
                 startChat: 'Start chat'
+            },
+            cropper: {
+                title: 'Crop',
+                crop: 'Crop',
+                cancel: 'Cancel'
             }
         }
     }

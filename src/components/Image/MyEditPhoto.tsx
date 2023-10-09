@@ -1,28 +1,18 @@
 import Image from 'next/image';
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 
 interface Props {
     defaultImage?: string;
-    onImageSelect?: (newImage: File) => void;
+    onImageSelect?: (newImage: Blob) => void;
 }
 
 export default function MyEditPhoto({ defaultImage, onImageSelect }: Props) {
     const fileInputRef = useRef<HTMLInputElement | null>(null);
-    const [selectedImage, setSelectedImage] = useState<File | null>(null);
-    const [previewURL, setPreviewURL] = useState<string | undefined>(defaultImage);
 
     const handleFileSelected = (e: React.ChangeEvent<HTMLInputElement>) => {
         const selectedFile = e.target.files && e.target.files[0];
         if (!selectedFile) return;
-        setSelectedImage(selectedFile);
         onImageSelect?.(selectedFile);
-
-        // Read the selected file and set it as the image preview
-        const reader = new FileReader();
-        reader.onloadend = () => {
-            setPreviewURL(reader.result as string);
-        };
-        reader.readAsDataURL(selectedFile);
     };
 
     return (
@@ -41,9 +31,9 @@ export default function MyEditPhoto({ defaultImage, onImageSelect }: Props) {
                 ref={fileInputRef}
             />
 
-            {previewURL ? (
+            {defaultImage ? (
                 <Image
-                    src={previewURL}
+                    src={defaultImage}
                     width={100}
                     height={100}
                     alt={'profile'}

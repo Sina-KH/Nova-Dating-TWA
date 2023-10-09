@@ -29,6 +29,7 @@ It is developed and submitted as a dating mini-app for this contest and lets its
 - **clsx:** A tiny utility for constructing className strings conditionally.
 - **framer-motion:** No animate page transitions.
 - **react-datepicker:** Datepicker library, used for birthdate input.
+- **react-image-crop:** To let users crop their profile photo.
 - **react-slider:** Range slider, used in search filters.
 - **react-swipeable:** Swipeable cards, used in explore screen. 
 

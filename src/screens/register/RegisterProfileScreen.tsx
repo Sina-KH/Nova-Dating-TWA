@@ -11,6 +11,7 @@ import { ProfileEditRequest } from '@/api/requests/profile/profileEditRequest';
 import MyDateField from '@/components/Field/MyDateField';
 import { hashToImageURL, ImagePresentationType } from '@/helpers/mediaHelpers';
 import MyStepper from '@/components/Stepper/MyStepper';
+import MyPhotoCropper from '@/components/Image/MyPhotoCropper';
 
 export default function RegisterProfileScreen() {
     const { sessionToken, user } = useSession();
@@ -18,9 +19,31 @@ export default function RegisterProfileScreen() {
     const [lastName, setLastName] = useState(user?.lastName);
     const [birthdate, setBirthdate] = useState(user?.birthdate ? new Date(user.birthdate) : undefined);
     const [selectedImage, setSelectedImage] = useState<File | undefined>(undefined);
+    const [selectedImagePreview, setSelectedImagePreview] = useState<string | undefined>(undefined);
     const { t } = useTranslation();
     const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
+
+    // cropper
+    const [imageToCrop, setImageToCrop] = useState<Blob | undefined>(undefined);
+    if (imageToCrop)
+        return (
+            <MyPhotoCropper
+                selectedFile={imageToCrop}
+                onCancel={() => {
+                    setImageToCrop(undefined);
+                }}
+                onSubmit={(selectedImage) => {
+                    setSelectedImage(selectedImage);
+                    setImageToCrop(undefined);
+                    const reader = new FileReader();
+                    reader.onloadend = () => {
+                        setSelectedImagePreview(reader.result as string);
+                    };
+                    reader.readAsDataURL(selectedImage);
+                }}
+            />
+        );
 
     return (
         <div className={'w-full h-full pt-8 pb-8 flex flex-col items-start space-y-4 pl-4 pr-4'}>
@@ -32,9 +55,11 @@ export default function RegisterProfileScreen() {
             <MyGrowingContainer className={'flex flex-col gap-4 items-center'}>
                 {/*Profile image selector*/}
                 <MyEditPhoto
-                    defaultImage={hashToImageURL(user?.photo?.hash, ImagePresentationType.medium)}
+                    defaultImage={
+                        selectedImagePreview || hashToImageURL(user?.photo?.hash, ImagePresentationType.medium)
+                    }
                     onImageSelect={(newImage) => {
-                        setSelectedImage(newImage);
+                        setImageToCrop(newImage);
                     }}
                 />
                 {/*Firstname*/}
