@@ -7,6 +7,8 @@ You can also find the [**BACK-END SOURCE CODE** here](https://github.com/Sina-KH
 This bot is written as a mini-app for [Telegram Mini-App Contest](https://t.me/contest/327).
 It is developed and submitted as a dating mini-app for this contest and lets its users find their ideal friends/partner~~s~~ with mutual interests.
 
+Feel free to use this source code as your new project's template. I tried to develop it as easy to understand and clear, as I could. It is NOT over-engineered at all!
+
 <img src="documentations/images/NovaDatingApp-Profile.jpg" width="200" alt="NovaDatingApp-ProfilePic">
 
 ## 🤓 Features / User Flow
@@ -14,6 +16,7 @@ It is developed and submitted as a dating mini-app for this contest and lets its
 - [x] 🤘 No classic registrations required, users will be registered using their Telegram account.
 - [x] 🥸 Choose your `Gender`, `Age`, `Interests` and upload your `profile photos` to let other users know you.
 - [x] 🔥 Find friends based on your interests and filters. Like them and get their telegram username once you've matched!
+- [x] 📱 Telegram color-palette support. The app will use the active theme of the telegram.
 - [x] 📝  Multi-language support.
 - [x] ⚡️ Socket.IO adapter in codebase to easily add real-time features later.
 - [ ] ☝️ **Disable collapse gesture** in `explore` and `crop` screens.
@@ -22,11 +25,13 @@ It is developed and submitted as a dating mini-app for this contest and lets its
 ## Tech Stack
 
 - Typescript programming language, using NextJS framework.
+- TailwindCSS, utility-first CSS framework to develop UI!
 
 ## Libraries
 
 - **React:** Well-known front-end library for building user interfaces based on components.
 - **NextJS:** Another well-known front-end framework based on React. In this project we use next.js to manage routes, use its other great out-of-the-box features.
+- **tailwindcss:** I love how tailwind makes UI development easy! 🤘
 - **Axios:** To send API requests to the back-end service.
 - **clsx:** A tiny utility for constructing className strings conditionally.
 - **framer-motion:** No animate page transitions.
@@ -40,13 +45,20 @@ It is developed and submitted as a dating mini-app for this contest and lets its
 - NodeJS
 - `npm` package manager
 
-## Build
+## How to build and run the project
 
 - Clone the project.
 - Run `npm install` to install required dependencies. (You can also consider using pnpm, yarn, bun or any similar package managers)
-- Copy the `.env.example` to `.env` file and enter your backend server data into it.
+- Copy the `.env.example` to `.env` file and update your backend server data in this file.
 - Run `npm run dev` to test and develop.
 - To run the project in production mode, run `npm run build` and `npm run start` commands.
+
+## How to build and run using `docker`
+
+If you prefer to use docker instead of `node` and `pm2`, You can easily deploy the code using `docker-compose`:
+
+- Create `.env` file.
+- Just run `docker-compose up -d`
 
 ## Code architecture
 
