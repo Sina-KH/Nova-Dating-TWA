@@ -131,7 +131,9 @@ export default function EditProfileScreen() {
                 {/*Interests*/}
                 <p className={'w-full pt-6'}>{t('profile.edit.gender')}</p>
                 {isLoadingInterests ? (
-                    <MyLoadingView />
+                    <div className={'w-full flex justify-center'}>
+                        <MyLoadingView />
+                    </div>
                 ) : interests ? (
                     <MyTagsSelector
                         tags={interests}

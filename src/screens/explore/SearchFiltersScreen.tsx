@@ -37,7 +37,6 @@ export default function SearchFiltersScreen() {
                 setInterests(response?.tags ?? []);
             })
             .catch((e) => {
-                console.log(e);
                 setIsLoadingInterests(false);
             });
     }, [sessionToken]);
@@ -105,7 +104,9 @@ export default function SearchFiltersScreen() {
                 <div className={'w-full rounded-3xl p-4 bg-telegram-secondary-bg'}>
                     <p className={'w-full mb-2 font-bold'}>{t('explore.filters.interests')}</p>
                     {isLoadingInterests ? (
-                        <MyLoadingView />
+                        <div className={'w-full flex justify-center'}>
+                            <MyLoadingView />
+                        </div>
                     ) : interests ? (
                         <MyTagsSelector
                             tags={interests}
