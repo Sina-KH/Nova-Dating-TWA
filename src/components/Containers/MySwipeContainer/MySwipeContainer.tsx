@@ -73,13 +73,14 @@ export default function MySwipeContainer({ users, userLiked, userDisliked, loadM
     };
 
     return (
-        <div
-            className={'relative flex flex-col w-full h-full overflow-x-hidden'}
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-        >
+        <div className={'relative flex flex-col w-full h-full overflow-x-hidden'}>
             {/*swipe container*/}
-            <div className="relative swipe-container w-full h-full" {...handlers}>
+            <div
+                className="relative swipe-container w-full h-full"
+                {...handlers}
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+            >
                 {users.map((user, index) => {
                     return (
                         <ExploreUserCard

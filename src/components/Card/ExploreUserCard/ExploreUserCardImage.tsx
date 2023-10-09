@@ -14,7 +14,14 @@ export default function ExploreUserCardImage({ user }: Props) {
                     className={'w-full rounded-2xl aspect-square bg-telegram-secondary-bg'}
                 />
             ) : (
-                <div className={'w-full rounded-2xl aspect-square bg-telegram-secondary-bg'} />
+                <div
+                    className={
+                        'w-full rounded-2xl aspect-square bg-telegram-secondary-bg flex flex-col justify-center items-center'
+                    }
+                >
+                    <p>🙂</p>
+                    <p className={'text-telegram-text opacity-50'}>No photos!</p>
+                </div>
             )}
             {/*top user data*/}
             <div className={'absolute top-0 left-0 right-0 rounded-t-2xl'}>
