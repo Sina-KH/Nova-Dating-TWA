@@ -1,6 +1,6 @@
 {
   "name": "novadating-twa",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -19,7 +19,8 @@
     "react-i18next": "^13.2.2",
     "react-image-crop": "^10.1.8",
     "react-slider": "^2.0.6",
-    "react-swipeable": "^7.0.1"
+    "react-swipeable": "^7.0.1",
+    "socket.io-client": "^4.7.2"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^13.0.2",

@@ -44,7 +44,7 @@ export default function MyTitle({ children }: Props) {
                             width="342"
                             height="156"
                             filterUnits="userSpaceOnUse"
-                            color-interpolation-filters="sRGB"
+                            colorInterpolationFilters="sRGB"
                         >
                             <feFlood floodOpacity="0" result="BackgroundImageFix" />
                             <feGaussianBlur in="BackgroundImageFix" stdDeviation="15" />

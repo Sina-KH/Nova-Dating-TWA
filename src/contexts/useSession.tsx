@@ -1,8 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { UserGetTokenRequest } from '@/api/requests/userGetTokenRequest';
 import { IUser } from '@/types/IUser';
-import { useRouter } from 'next/router';
-import Link from 'next/link';
 
 const MySessionContext = React.createContext<{
     sessionToken?: string;

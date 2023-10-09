@@ -118,7 +118,7 @@ export default function EmptyCard({ title, subTitle, action }: Props) {
                         width="105.051"
                         height="118.386"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                     >
                         <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feColorMatrix
@@ -141,7 +141,7 @@ export default function EmptyCard({ title, subTitle, action }: Props) {
                         width="105.05"
                         height="118.386"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                     >
                         <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feColorMatrix
@@ -164,7 +164,7 @@ export default function EmptyCard({ title, subTitle, action }: Props) {
                         width="110.51"
                         height="159.01"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                     >
                         <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feColorMatrix

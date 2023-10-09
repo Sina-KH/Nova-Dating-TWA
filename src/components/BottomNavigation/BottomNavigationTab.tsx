@@ -7,17 +7,19 @@ interface Props {
     icon: React.ReactNode;
     isSelected: boolean;
     selectedClassName: string;
+    badge?: boolean;
 }
 
-export function BottomNavigationTab({ path, icon, isSelected, selectedClassName }: Props) {
+export function BottomNavigationTab({ path, icon, isSelected, selectedClassName, badge }: Props) {
     const router = useRouter();
 
     return (
         <button
             type="button"
-            className={`${
-                isSelected ? selectedClassName : 'stroke-telegram-text opacity-50'
-            } select-none flex flex-grow items-center justify-center`}
+            className={clsx(
+                isSelected ? selectedClassName : 'stroke-telegram-text',
+                'select-none flex flex-grow items-center justify-center relative'
+            )}
             onClick={() => {
                 router
                     .push(
@@ -30,7 +32,10 @@ export function BottomNavigationTab({ path, icon, isSelected, selectedClassName 
                     .then();
             }}
         >
-            {icon}
+            <div className={isSelected ? '' : 'opacity-50'}>{icon}</div>
+            {badge ? (
+                <div className={'absolute top-0 mr-6 left-auto right-auto rounded-full h-2 w-2 bg-red-600'} />
+            ) : undefined}
         </button>
     );
 }

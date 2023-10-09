@@ -19,9 +19,9 @@ export default function MySwipeContainer({ users, userLiked, userDisliked, loadM
     // current active index
     const [activeIndex, setActiveIndex] = useState(0);
 
-    const handleSwipe = (direction: string) => {
+    const handleSwipe = (direction: string, fromActionButton?: boolean) => {
         // check if all users are swiped and nothing is selected
-        if (activeIndex < 0 || Math.abs(translateX) < 50) return;
+        if (activeIndex < 0 || (!fromActionButton && Math.abs(translateX) < 50)) return;
 
         if (direction === 'left') {
             userDisliked(users[activeIndex].pID!);
@@ -143,10 +143,10 @@ export default function MySwipeContainer({ users, userLiked, userDisliked, loadM
             </div>
             <MySwipeContainerActions
                 onLike={() => {
-                    handleSwipe('right');
+                    handleSwipe('right', true);
                 }}
                 onDislike={() => {
-                    handleSwipe('left');
+                    handleSwipe('left', true);
                 }}
             />
         </div>

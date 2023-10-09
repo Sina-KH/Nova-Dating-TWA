@@ -11,12 +11,14 @@ import MyPromotionLabel from '@/components/Label/MyPromotionLabel';
 import { MatchRequestLinkRequest } from '@/api/requests/match/matchRequestLinkRequest';
 import clsx from 'clsx';
 import EmptyCard from '@/components/Card/EmptyCard';
+import { useSocket } from '@/contexts/useSocket';
 
 export default function MatchesScreen() {
     const { sessionToken, user } = useSession();
     const { t } = useTranslation();
     const [isLoading, setIsLoading] = useState(false);
     const [matches, setMatches] = useState<IMatch[]>([]);
+    const { socket } = useSocket();
 
     // pagination
     const [isLoadingMore, setIsLoadingMore] = useState<boolean>(false);
@@ -33,7 +35,6 @@ export default function MatchesScreen() {
             })
             .catch((e) => {
                 setIsLoading(false);
-                console.log(e);
             });
     }, [sessionToken]);
 
@@ -45,28 +46,36 @@ export default function MatchesScreen() {
             if (observer.current) observer.current.disconnect();
             observer.current = new IntersectionObserver((entries) => {
                 if (entries[0].isIntersecting && hasNextPage && !isLoadingMore) {
-                    console.log('is loading more...');
-                    loadMore();
+                    // load more
+                    if (!matches.length) return;
+                    setIsLoadingMore(true);
+                    new MatchListRequest({ before: matches[matches.length - 1]._id })
+                        .call(sessionToken)
+                        .then((response) => {
+                            if (!response.matches.length) setHasNextPage(false);
+                            setMatches(matches.concat(response.matches));
+                            setIsLoadingMore(false);
+                        })
+                        .catch((e) => {
+                            setIsLoadingMore(false);
+                        });
                 }
             });
             if (node) observer.current.observe(node);
         },
-        [isLoading, hasNextPage]
+        [isLoading, hasNextPage, isLoadingMore, matches, sessionToken]
     );
-    function loadMore() {
-        setIsLoadingMore(true);
-        new MatchListRequest({ before: matches[matches.length - 1]._id })
-            .call(sessionToken)
-            .then((response) => {
-                if (!response.matches.length) setHasNextPage(false);
-                setMatches(matches.concat(response.matches));
-                setIsLoadingMore(false);
-            })
-            .catch((e) => {
-                setIsLoadingMore(false);
-                console.log(e);
-            });
-    }
+
+    // listen for new match on socket
+    useEffect(() => {
+        socket?.off('match');
+        socket?.on('match', (data) => {
+            if (data.match) setMatches([data.match].concat(matches));
+        });
+        return () => {
+            socket?.off('match');
+        };
+    }, [matches, socket]);
 
     return (
         <div className={'w-full h-full flex flex-col items-center p-8 overflow-y-scroll'}>

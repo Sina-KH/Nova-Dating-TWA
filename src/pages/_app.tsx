@@ -9,6 +9,7 @@ import { initReactI18next } from 'react-i18next';
 import LocalizationResources from '@/helpers/localizationResources';
 import { useRouter } from 'next/router';
 import MyAppContent from '@/components/Containers/MyAppContainer';
+import MySocketProvider from '@/contexts/useSocket';
 
 i18n.use(initReactI18next)
     .init({
@@ -57,7 +58,9 @@ function MyApp(props: AppProps) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <MySessionProvider>
-                <MyAppContent {...props} />
+                <MySocketProvider>
+                    <MyAppContent {...props} />
+                </MySocketProvider>
             </MySessionProvider>
         </>
     );

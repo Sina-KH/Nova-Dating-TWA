@@ -7,13 +7,18 @@ import clsx from 'clsx';
 import MainContainer from '@/components/Containers/MainContainer';
 import BottomNavigation from '@/components/BottomNavigation/BottomNavigation';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useSocket } from '@/contexts/useSocket';
 
 export default function MyAppContent({ Component, pageProps }: AppProps) {
     const { sessionToken, user } = useSession();
+    const { socket } = useSocket();
     const [isDark, setIsDark] = useState(false);
     const dataLoaded = sessionToken?.length && !!user;
 
     const router = useRouter();
+
+    // listen for new match on socket
+    const [matchBadge, setMatchBadge] = useState(false);
 
     useEffect(() => {
         const isDark = window.Telegram.WebApp.colorScheme === 'dark';
@@ -24,6 +29,22 @@ export default function MyAppContent({ Component, pageProps }: AppProps) {
         // @ts-ignore
         window.Telegram?.WebApp?.setBackgroundColor(isDark ? 'secondary_bg_color' : 'bg_color');
     }, []);
+
+    // listen for match event
+    useEffect(() => {
+        socket?.off('match');
+        socket?.on('match', (data) => {
+            // set badge if page is not `/matches`
+            if (data.match) {
+                if (router.pathname !== '/matches') {
+                    setMatchBadge(true);
+                }
+            }
+        });
+        return () => {
+            socket?.off('match');
+        };
+    }, [router.pathname, socket]);
 
     // callback on init data validation using back-end service
     useEffect(() => {
@@ -72,6 +93,9 @@ export default function MyAppContent({ Component, pageProps }: AppProps) {
     // empty if loading data
     if (!dataLoaded || (router.pathname === '/' && user?.status !== IUserStatus.preRegistered)) return <></>; // is loading or will be redirected
 
+    // remove match badge on opening match page
+    if (matchBadge && router.pathname === '/matches') setMatchBadge(false);
+
     const showBottomNavigation = !!user && user.status !== IUserStatus.preRegistered;
     return (
         <div className={clsx('bg-telegram-bg flex flex-col h-screen', isDark ? 'color-scheme-dark' : '')}>
@@ -114,6 +138,7 @@ export default function MyAppContent({ Component, pageProps }: AppProps) {
                     'transition-opacity duration-1000'
                 )}
                 disabled={!showBottomNavigation}
+                matchBadge={matchBadge}
             />
         </div>
     );

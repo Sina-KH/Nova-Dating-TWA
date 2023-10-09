@@ -77,8 +77,9 @@ const tabs = [
 interface Props {
     className: string;
     disabled?: boolean;
+    matchBadge?: boolean;
 }
-export default function BottomNavigation({ className, disabled }: Props) {
+export default function BottomNavigation({ className, disabled, matchBadge }: Props) {
     const router = useRouter();
     let selectedTab = router.pathname.split('/')[1];
     return (
@@ -106,7 +107,7 @@ export default function BottomNavigation({ className, disabled }: Props) {
                         width="419.086"
                         height="126.926"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                     >
                         <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feColorMatrix
@@ -138,6 +139,7 @@ export default function BottomNavigation({ className, disabled }: Props) {
                             icon={it.icon}
                             isSelected={it.key === selectedTab}
                             selectedClassName={it.selectedClassName}
+                            badge={it.key === 'matches' && matchBadge}
                         />
                     );
                 })}
