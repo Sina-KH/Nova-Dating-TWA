@@ -34,7 +34,7 @@ const RangeSlider = <T extends number | readonly number[]>(_props: ReactSliderPr
                             'h-1/4 top-1/2 -translate-y-1/2': !isVertical,
                             'w-1/4 left-1/2 -translate-x-1/2': isVertical,
                             'rounded-full': true,
-                            'bg-gray-200': isMulti ? isFirst || isLast : isLast,
+                            'bg-telegram-hint opacity-30': isMulti ? isFirst || isLast : isLast,
                             'bg-telegram-button': isMulti ? !isFirst || !isLast : isFirst
                         })}
                     ></div>

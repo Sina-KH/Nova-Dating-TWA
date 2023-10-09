@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import MySwipeContainer from '@/components/Containers/MySwipeContainer/MySwipeContainer';
 import { ExploreUsersRequest } from '@/api/requests/explore/exploreUsersRequest';
 import { useSession } from '@/contexts/useSession';
@@ -29,13 +29,14 @@ export default function ExploreScreen() {
     const { t } = useTranslation();
     const router = useRouter();
 
-    const userHasFilters =
-        user?.searchFilters?.searchGenders?.length ||
-        user?.searchFilters?.searchInterests?.length ||
-        user?.searchFilters?.searchAgeFrom ||
-        18 > 18 ||
-        user?.searchFilters?.searchAgeTo ||
-        100 < 100;
+    const userHasFilters = useMemo(() => {
+        return (
+            user?.searchFilters?.searchGenders?.length ||
+            user?.searchFilters?.searchInterests?.length ||
+            (user?.searchFilters?.searchAgeFrom || 18) > 18 ||
+            (user?.searchFilters?.searchAgeTo || 100) < 100
+        );
+    }, [user]);
 
     // function to load users
     function exploreUsers() {
