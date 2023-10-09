@@ -10,12 +10,14 @@ import MySecondaryButton from '@/components/Button/MySecondaryButton';
 import MyMultiSelect from '@/components/Select/MyMultiSelect';
 import MyAgeSelector from '@/components/Select/MyAgeSelector';
 import { ProfileSetSearchFiltersRequest } from '@/api/requests/profile/profileSetSearchFiltersRequest';
+import MyLoadingView from '@/components/Loading/MyLoadingView';
 
 export default function SearchFiltersScreen() {
     const { sessionToken, user, setUser } = useSession();
     const { t } = useTranslation();
     const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
+    const [isLoadingInterests, setIsLoadingInterests] = useState(true);
     const [interests, setInterests] = useState<ITag[] | null>(null);
     const [selectedSearchGenders, setSelectedSearchGenders] = useState(user?.searchFilters?.searchGenders || []);
     const [sliderKey, setSliderKey] = useState(0);
@@ -31,10 +33,12 @@ export default function SearchFiltersScreen() {
         new TagListRequest({ type: ITagType.interests })
             .call(sessionToken)
             .then((response) => {
+                setIsLoadingInterests(false);
                 setInterests(response?.tags ?? []);
             })
             .catch((e) => {
                 console.log(e);
+                setIsLoadingInterests(false);
             });
     }, [sessionToken]);
 
@@ -100,7 +104,9 @@ export default function SearchFiltersScreen() {
                 {/*Interests*/}
                 <div className={'w-full rounded-3xl p-4 bg-telegram-secondary-bg'}>
                     <p className={'w-full mb-2 font-bold'}>{t('explore.filters.interests')}</p>
-                    {interests ? (
+                    {isLoadingInterests ? (
+                        <MyLoadingView />
+                    ) : interests ? (
                         <MyTagsSelector
                             tags={interests}
                             selectedTags={selectedSearchInterests}

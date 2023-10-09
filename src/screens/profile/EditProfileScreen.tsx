@@ -13,6 +13,7 @@ import MyTagsSelector from '@/components/Select/MyTagsSelector';
 import { ITag, ITagType } from '@/types/ITag';
 import { TagListRequest } from '@/api/requests/tagListRequest';
 import MyPhotoCropper from '@/components/Image/MyPhotoCropper';
+import MyLoadingView from '@/components/Loading/MyLoadingView';
 
 export default function EditProfileScreen() {
     const { sessionToken, user, setUser } = useSession();
@@ -25,6 +26,7 @@ export default function EditProfileScreen() {
     const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
     const [selectedGender, setSelectedGender] = useState(user?.gender || '');
+    const [isLoadingInterests, setIsLoadingInterests] = useState(true);
     const [interests, setInterests] = useState<ITag[] | null>(null);
     const [selectedInterests, setSelectedInterests] = useState<string[]>(
         user?.interests.map((it: Partial<ITag>) => it._id)
@@ -34,10 +36,11 @@ export default function EditProfileScreen() {
         new TagListRequest({ type: ITagType.interests })
             .call(sessionToken)
             .then((response) => {
+                setIsLoadingInterests(false);
                 setInterests(response?.tags ?? []);
             })
             .catch((e) => {
-                console.log(e);
+                setIsLoadingInterests(false);
             });
     }, [sessionToken]);
 
@@ -127,7 +130,9 @@ export default function EditProfileScreen() {
                 />
                 {/*Interests*/}
                 <p className={'w-full pt-6'}>{t('profile.edit.gender')}</p>
-                {interests ? (
+                {isLoadingInterests ? (
+                    <MyLoadingView />
+                ) : interests ? (
                     <MyTagsSelector
                         tags={interests}
                         selectedTags={selectedInterests}

@@ -1,7 +1,6 @@
 import { useSession } from '@/contexts/useSession';
 import { useTranslation } from 'react-i18next';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { useRouter } from 'next/router';
 import { IMatch } from '@/types/IMatch';
 import { MatchListRequest } from '@/api/requests/match/matchListRequest';
 import { LogoIcon } from '@/assets/logoIcon';
@@ -11,13 +10,13 @@ import MyLoadingView from '@/components/Loading/MyLoadingView';
 import MyPromotionLabel from '@/components/Label/MyPromotionLabel';
 import { MatchRequestLinkRequest } from '@/api/requests/match/matchRequestLinkRequest';
 import clsx from 'clsx';
+import EmptyCard from '@/components/Card/EmptyCard';
 
 export default function MatchesScreen() {
     const { sessionToken, user } = useSession();
     const { t } = useTranslation();
     const [isLoading, setIsLoading] = useState(false);
     const [matches, setMatches] = useState<IMatch[]>([]);
-    const router = useRouter();
 
     // pagination
     const [isLoadingMore, setIsLoadingMore] = useState<boolean>(false);
@@ -77,8 +76,11 @@ export default function MatchesScreen() {
             </div>
 
             {isLoading ? (
-                <MyLoadingView />
-            ) : (
+                // Loading View
+                <div className={'flex-grow flex items-center pb-20'}>
+                    <MyLoadingView />
+                </div>
+            ) : matches.length ? (
                 <>
                     <div className={'grid grid-cols-2 gap-4'}>
                         {matches.map((match) => {
@@ -170,6 +172,10 @@ export default function MatchesScreen() {
                     </div>
                     {isLoadingMore ? <MyLoadingView /> : undefined}
                 </>
+            ) : (
+                <div className={'flex-grow flex items-center pb-20'}>
+                    <EmptyCard title={t('matches.empty.title')} subTitle={t('matches.empty.subTitle')} />
+                </div>
             )}
         </div>
     );

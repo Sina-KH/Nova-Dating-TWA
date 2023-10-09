@@ -21,7 +21,7 @@ export default function MySwipeContainer({ users, userLiked, userDisliked, loadM
 
     const handleSwipe = (direction: string) => {
         // check if all users are swiped and nothing is selected
-        if (activeIndex < 0) return;
+        if (activeIndex < 0 || Math.abs(translateX) < 50) return;
 
         if (direction === 'left') {
             userDisliked(users[activeIndex].pID!);

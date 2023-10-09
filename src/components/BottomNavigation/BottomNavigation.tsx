@@ -1,5 +1,5 @@
 import { BottomNavigationTab } from '@/components/BottomNavigation/BottomNavigationTab';
-import React, { useState } from 'react';
+import React from 'react';
 import { useRouter } from 'next/router';
 import clsx from 'clsx';
 
@@ -83,9 +83,12 @@ export default function BottomNavigation({ className, disabled }: Props) {
     let selectedTab = router.pathname.split('/')[1];
     return (
         <div
-            className={clsx('fixed bottom-0 left-0 z-50 w-full pointer-events-none', className)}
+            className={clsx('fixed bottom-0 z-50 w-full pointer-events-none', className)}
             style={{
-                height: '113px'
+                maxHeight: '113px',
+                maxWidth: '450px',
+                left: '50%',
+                transform: 'translate(-50%, 0%)'
             }}
         >
             <svg viewBox="0 0 360 127" fill="none" className={'w-full'}>

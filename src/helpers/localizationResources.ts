@@ -58,7 +58,11 @@ const LocalizationResources = {
             matches: {
                 title: 'Matches',
                 startChat: 'Start chat',
-                linkSent: 'Link sent'
+                linkSent: 'Link sent',
+                empty: {
+                    title: 'Sorry',
+                    subTitle: 'You have no matches yet! 🥲'
+                }
             },
             cropper: {
                 title: 'Crop',
