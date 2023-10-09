@@ -7,14 +7,16 @@ You can also find the [**BACK-END SOURCE CODE** here](https://github.com/Sina-KH
 This bot is written as a mini-app for [Telegram Mini-App Contest](https://t.me/contest/327).
 It is developed and submitted as a dating mini-app for this contest and lets its users find their ideal friends/partner~~s~~ with mutual interests.
 
-<img src="documentations/images/NovaDatingApp-Profile.jpg" width="200">
+<img src="documentations/images/NovaDatingApp-Profile.jpg" width="200" alt="NovaDatingApp-ProfilePic">
 
 ## 🤓 Features / User Flow
 
 - [x] 🤘 No classic registrations required, users will be registered using their Telegram account.
 - [x] 🥸 Choose your `Gender`, `Age`, `Interests` and upload your `profile photos` to let other users know you.
 - [x] 🔥 Find friends based on your interests and filters. Like them and get their telegram username once you've matched!
-- [x] 📱 Telegram color-palette support. The app will use the active theme of the telegram.
+- [x] 📝  Multi-language support.
+- [x] ⚡️ Socket.IO adapter in codebase to easily add real-time features later.
+- [ ] ☝️ **Disable collapse gesture** in `explore` and `crop` screens.
 - [ ] 📍 For now, It shows all registered users, but I will add location filters in future revisions.
 
 ## Tech Stack
