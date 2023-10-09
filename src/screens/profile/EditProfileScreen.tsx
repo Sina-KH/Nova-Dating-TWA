@@ -114,6 +114,10 @@ export default function EditProfileScreen() {
                         {
                             id: 'female',
                             name: t('register.gender.female')
+                        },
+                        {
+                            id: 'beyondBinary',
+                            name: t('register.gender.beyondBinary')
                         }
                     ]}
                     selectedID={selectedGender}

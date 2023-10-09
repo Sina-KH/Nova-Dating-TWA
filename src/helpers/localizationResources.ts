@@ -18,6 +18,7 @@ const LocalizationResources = {
                     title: 'I am a',
                     male: 'Man',
                     female: 'Woman',
+                    beyondBinary: 'Beyond Binary',
                     next: 'Next'
                 },
                 interests: {

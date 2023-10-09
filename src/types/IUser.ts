@@ -17,7 +17,7 @@ export interface IUser {
     };
     firstName: string;
     lastName: string;
-    gender: 'male' | 'female';
+    gender: 'male' | 'female' | 'beyondBinary';
     interests: any;
 
     // passed if users requests for their own data
