@@ -7,12 +7,14 @@ interface Props {
 export default function ExploreUserCardImage({ user }: Props) {
     return (
         <div className={'relative rounded-2xl w-full'}>
-            {user.photo?.hash && (
+            {user.photo?.hash ? (
                 <img
                     src={hashToImageURL(user.photo!.hash)!}
                     alt={'profile'}
-                    className={'w-full rounded-2xl aspect-square'}
+                    className={'w-full rounded-2xl aspect-square bg-telegram-secondary-bg'}
                 />
+            ) : (
+                <div className={'w-full rounded-2xl aspect-square bg-telegram-secondary-bg'} />
             )}
             {/*top user data*/}
             <div className={'absolute top-0 left-0 right-0 rounded-t-2xl'}>
