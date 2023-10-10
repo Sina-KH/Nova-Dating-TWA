@@ -7,13 +7,13 @@ interface Props {
 export default function MySwipeContainerActions({ onLike, onDislike }: Props) {
     return (
         <div
-            className={'absolute bottom-0 w-full flex flex-row justify-center pb-10 gap-6'}
+            className={'fixed bottom-0 w-full flex flex-row justify-center pb-20 gap-6'}
             style={{
                 zIndex: '9999'
             }}
         >
             {/*Dislike*/}
-            <button className={'cursor-none drop-shadow-2xl'} onClick={onDislike}>
+            <button className={'select-none drop-shadow-2xl'} onClick={onDislike}>
                 <svg width="57" height="57" viewBox="0 0 57 57" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="28.957" cy="28.9167" r="28" fill="white" />
                     <path
@@ -30,7 +30,7 @@ export default function MySwipeContainerActions({ onLike, onDislike }: Props) {
             </button>
 
             {/*Like*/}
-            <button className={'cursor-none drop-shadow-2xl'} onClick={onLike}>
+            <button className={'select-none drop-shadow-2xl'} onClick={onLike}>
                 <svg width="57" height="56" viewBox="0 0 57 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="28.5" cy="28" r="28" fill="white" className={'fill-white'} />
                     <path

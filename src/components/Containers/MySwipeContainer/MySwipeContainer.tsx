@@ -65,12 +65,14 @@ export default function MySwipeContainer({ users, userLiked, userDisliked, loadM
         onSwiped: handleSwiped
     });
 
-    const handleTouchStart = (event: TouchEvent) => {
-        event.stopPropagation(); // Prevent touchstart event from propagating to the parent
+    // I tried to stop twa from collapsing but did not work!
+
+    /*const handleTouchStart = (event: TouchEvent) => {
+        //event.stopPropagation(); // Prevent touchstart event from propagating to the parent
     };
     const handleTouchMove = (event: TouchEvent) => {
-        event.stopPropagation(); // Prevent touchmove event from propagating to the parent
-    };
+        //event.stopPropagation(); // Prevent touchmove event from propagating to the parent
+    };*/
 
     return (
         <div className={'relative flex flex-col w-full h-full overflow-x-hidden'}>
@@ -78,8 +80,8 @@ export default function MySwipeContainer({ users, userLiked, userDisliked, loadM
             <div
                 className="relative swipe-container w-full h-full"
                 {...handlers}
-                onTouchStart={handleTouchStart}
-                onTouchMove={handleTouchMove}
+                /*onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}*/
             >
                 {users.map((user, index) => {
                     return (

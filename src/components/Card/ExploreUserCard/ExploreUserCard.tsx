@@ -15,13 +15,13 @@ export default function ExploreUserCard({ user, isActive, isPassed, translateX, 
     switch (user.reacted) {
         case 'liked':
             positionStyles = {
-                transform: `translateX(500px) rotate(80deg)`,
+                transform: `translateX(800px) rotate(80deg)`,
                 transition: `transform 0.3s ease`
             };
             break;
         case 'disliked':
             positionStyles = {
-                transform: `translateX(-500px) rotate(-80deg)`,
+                transform: `translateX(-800px) rotate(-80deg)`,
                 transition: `transform 0.3s ease`
             };
             break;
