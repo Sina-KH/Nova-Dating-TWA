@@ -14,7 +14,7 @@ export default function ExploreUserCardImage({ user }: Props) {
                     className={'w-full rounded-2xl aspect-square bg-telegram-secondary-bg'}
                 />
             ) : (
-                <img src={'/assets/images/profile_placeholder.jpg'} className={'w-full rounded-2xl aspect-square'} />
+                <img src={'/assets/images/placeholder.jpg'} className={'w-full rounded-2xl aspect-square'} />
             )}
             {/*top user data*/}
             <div className={'absolute top-0 left-0 right-0 rounded-t-2xl'}>
