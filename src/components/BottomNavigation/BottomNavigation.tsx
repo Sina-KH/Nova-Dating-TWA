@@ -71,7 +71,7 @@ export default function BottomNavigation({ className, disabled, matchBadge }: Pr
                     />
                     <path
                         d="M17.5642 53.0014C22.184 37.3989 35.3923 25.7968 51.5328 23.7326C142.571 12.0896 234.527 12.0891 325.565 23.7311C341.712 25.7959 354.923 37.4056 359.538 53.0157L368.086 81.9258H9L17.5642 53.0014Z"
-                        className={'fill-telegram-button opacity-10'}
+                        className={'fill-telegram-button opacity-5'}
                     />
                 </g>
                 <defs>
