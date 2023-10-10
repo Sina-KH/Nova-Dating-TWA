@@ -19,12 +19,12 @@ export default function RegisterGenderScreen() {
 
     return (
         <>
-            <div className={'w-full h-full flex flex-col items-center space-y-10 pt-8 pb-8 pl-4 pr-4'}>
+            <div className={'w-full h-full flex flex-col items-center space-y-10 pt-8 pb-8 pl-4 pr-4 overflow-y-auto'}>
                 {/*Stepper*/}
                 <MyStepper currentStep={2} steps={3} />
 
                 <MyTitle>{t('register.gender.title')}</MyTitle>
-                <MyGrowingContainer>
+                <MyGrowingContainer className={'pb-4'}>
                     <MyRadioSelect
                         items={[
                             {

@@ -111,7 +111,7 @@ export default function MyPhotoCropper({ selectedFile, onCancel, onSubmit }: Pro
     };
 
     return (
-        <div className={'w-full h-full flex flex-col items-center space-y-4 p-8 overflow-y-scroll'}>
+        <div className={'w-full h-full flex flex-col items-center space-y-4 p-8 overflow-y-auto'}>
             <div className={'relative w-full pb-4 items-center'}>
                 <p className={'font-bold text-2xl flex-grow text-center'}>{t('cropper.title')}</p>
             </div>

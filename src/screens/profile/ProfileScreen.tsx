@@ -37,7 +37,7 @@ export default function ProfileScreen() {
     }
 
     return (
-        <div className={'w-full h-full flex flex-col items-center p-8 overflow-y-scroll'}>
+        <div className={'w-full h-full flex flex-col items-center p-8 overflow-y-auto'}>
             <div className={'w-full flex flex-row pb-8 items-center gap-2'}>
                 <LogoIcon />
                 <MyPromotionLabel className={'font-bold text-2xl flex-grow'} text={t('profile.title')} />

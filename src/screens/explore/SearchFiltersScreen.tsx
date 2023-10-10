@@ -50,7 +50,7 @@ export default function SearchFiltersScreen() {
     }
 
     return (
-        <div className={'w-full h-full flex flex-col items-center space-y-4 p-8 overflow-y-scroll'}>
+        <div className={'w-full h-full flex flex-col items-center space-y-4 p-8 overflow-y-auto'}>
             <div className={'relative w-full pb-4 items-center'}>
                 <MySecondaryButton
                     onClick={() => {

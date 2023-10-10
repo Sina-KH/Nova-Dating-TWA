@@ -66,7 +66,7 @@ export default function EditProfileScreen() {
         );
 
     return (
-        <div className={'w-full h-full flex flex-col items-center space-y-4 p-8 overflow-y-scroll'}>
+        <div className={'w-full h-full flex flex-col items-center space-y-4 p-8 overflow-y-auto'}>
             <div className={'w-full flex flex-row pb-4 items-center gap-2'}>
                 <p className={'font-bold text-2xl flex-grow text-center'}>{t('profile.edit.title')}</p>
             </div>

@@ -46,13 +46,13 @@ export default function RegisterProfileScreen() {
         );
 
     return (
-        <div className={'w-full h-full pt-8 pb-8 flex flex-col items-start space-y-4 pl-4 pr-4'}>
+        <div className={'w-full h-full pt-8 pb-8 flex flex-col items-start space-y-4 pl-4 pr-4 overflow-y-auto'}>
             {/*Stepper*/}
             <MyStepper currentStep={1} steps={3} />
 
             <MyTitle>{t('register.profile.title')}</MyTitle>
 
-            <MyGrowingContainer className={'flex flex-col gap-4 items-center'}>
+            <MyGrowingContainer className={'flex flex-col gap-4 pb-4 items-center'}>
                 {/*Profile image selector*/}
                 <MyEditPhoto
                     defaultImage={

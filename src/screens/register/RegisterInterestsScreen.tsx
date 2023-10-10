@@ -32,14 +32,12 @@ export default function RegisterInterestsScreen() {
     }, [sessionToken]);
 
     return (
-        <div className={'w-full h-full flex flex-col items-start space-y-4 pt-8 pb-8 pl-4 pr-4'}>
+        <div className={'w-full h-full flex flex-col items-start space-y-4 pt-8 pb-8 pl-4 pr-4 overflow-y-auto'}>
             {/*Stepper*/}
             <MyStepper currentStep={3} steps={3} />
-
             <MyTitle>{t('register.interests.title')}</MyTitle>
             <MySubTitle>{t('register.interests.description')}</MySubTitle>
-
-            <MyGrowingContainer className={'flex-wrap'}>
+            <MyGrowingContainer>
                 {interests ? (
                     <MyTagsSelector
                         tags={interests}
@@ -49,38 +47,37 @@ export default function RegisterInterestsScreen() {
                         }}
                     />
                 ) : null}
-
-                <MyButton
-                    className={'mt-4'}
-                    disabled={!selectedInterests.length}
-                    isLoading={isLoading}
-                    onClick={() => {
-                        if (!selectedInterests.length) return;
-                        if (isLoading) return;
-                        setIsLoading(true);
-                        new ProfileSetInterestsRequest({ interests: selectedInterests })
-                            .call(sessionToken)
-                            .then(({ user }) => {
-                                setUser(user);
-                                router
-                                    .push(
-                                        {
-                                            pathname: '/explore'
-                                        },
-                                        '/explore',
-                                        { shallow: true }
-                                    )
-                                    .then();
-                            })
-                            .catch((err) => {
-                                console.log(err);
-                                setIsLoading(false);
-                            });
-                    }}
-                >
-                    {t('register.interests.next')}
-                </MyButton>
             </MyGrowingContainer>
+            <MyButton
+                className={'mt-4'}
+                disabled={!selectedInterests.length}
+                isLoading={isLoading}
+                onClick={() => {
+                    if (!selectedInterests.length) return;
+                    if (isLoading) return;
+                    setIsLoading(true);
+                    new ProfileSetInterestsRequest({ interests: selectedInterests })
+                        .call(sessionToken)
+                        .then(({ user }) => {
+                            setUser(user);
+                            router
+                                .push(
+                                    {
+                                        pathname: '/explore'
+                                    },
+                                    '/explore',
+                                    { shallow: true }
+                                )
+                                .then();
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                            setIsLoading(false);
+                        });
+                }}
+            >
+                {t('register.interests.next')}
+            </MyButton>{' '}
         </div>
     );
 }
