@@ -15,7 +15,7 @@ const tabs = [
     {
         key: 'explore',
         icon: (
-            <svg width="64" height="61" viewBox="0 0 25 24" className={'-mt-1'}>
+            <svg width="64" height="61" viewBox="0 0 25 24" className={'-mt-3'}>
                 <g clip-path="url(#clip0_127_1354)">
                     <path d="M12.4452 2C6.93519 2 2.44519 6.49 2.44519 12C2.44519 17.51 6.93519 22 12.4452 22C17.9552 22 22.4452 17.51 22.4452 12C22.4452 6.49 17.9552 2 12.4452 2ZM10.9452 16.13C8.32519 16.13 8.32519 16.13 8.32519 13.51C8.32519 10.41 10.8452 7.89 13.9452 7.89C16.5652 7.89 16.5652 7.89 16.5652 10.51C16.5652 13.6 14.0452 16.13 10.9452 16.13Z" />
                 </g>
@@ -71,7 +71,8 @@ export default function BottomNavigation({ className, disabled, matchBadge }: Pr
                     />
                     <path
                         d="M17.5642 53.0014C22.184 37.3989 35.3923 25.7968 51.5328 23.7326C142.571 12.0896 234.527 12.0891 325.565 23.7311C341.712 25.7959 354.923 37.4056 359.538 53.0157L368.086 81.9258H9L17.5642 53.0014Z"
-                        className={'fill-telegram-button opacity-5'}
+                        className={'fill-telegram-button'}
+                        style={{ opacity: '2%' }}
                     />
                 </g>
                 <defs>
