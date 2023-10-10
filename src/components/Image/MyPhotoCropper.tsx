@@ -128,7 +128,7 @@ export default function MyPhotoCropper({ selectedFile, onCancel, onSubmit }: Pro
     }
 
     return (
-        <div className={'w-full h-full flex flex-col items-center space-y-4 p-8 overflow-y-auto pb-20'}>
+        <div className={'w-full h-full flex flex-col items-center space-y-4 p-8 overflow-y-auto'}>
             <div className={'relative w-full pb-4 items-center'}>
                 <p className={'font-bold text-2xl flex-grow text-center'}>{t('cropper.title')}</p>
             </div>
@@ -147,7 +147,7 @@ export default function MyPhotoCropper({ selectedFile, onCancel, onSubmit }: Pro
                 </ReactCrop>
             </div>
 
-            <div className={'w-full flex flex-row gap-4'}>
+            <div className={'w-full flex flex-row gap-4 mb-20'}>
                 <MySecondaryButton
                     onClick={() => {
                         onCancel();
