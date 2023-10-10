@@ -138,7 +138,6 @@ export default function MyAppContent({ Component, pageProps }: AppProps) {
                 )}
                 disabled={!showBottomNavigation}
                 matchBadge={matchBadge}
-                isDark={isDark}
             />
         </div>
     );

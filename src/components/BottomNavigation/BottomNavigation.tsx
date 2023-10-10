@@ -49,9 +49,8 @@ interface Props {
     className: string;
     disabled?: boolean;
     matchBadge?: boolean;
-    isDark: boolean;
 }
-export default function BottomNavigation({ className, disabled, isDark, matchBadge }: Props) {
+export default function BottomNavigation({ className, disabled, matchBadge }: Props) {
     const router = useRouter();
     let selectedTab = router.pathname.split('/')[1];
     return (
@@ -68,8 +67,11 @@ export default function BottomNavigation({ className, disabled, isDark, matchBad
                 <g filter="url(#filter0_d_126_1328)">
                     <path
                         d="M17.5642 53.0014C22.184 37.3989 35.3923 25.7968 51.5328 23.7326C142.571 12.0896 234.527 12.0891 325.565 23.7311C341.712 25.7959 354.923 37.4056 359.538 53.0157L368.086 81.9258H9L17.5642 53.0014Z"
-                        fill={isDark ? undefined : '#0E1621'}
-                        className={isDark ? 'fill-telegram-button opacity-10' : undefined}
+                        className={'fill-black'}
+                    />
+                    <path
+                        d="M17.5642 53.0014C22.184 37.3989 35.3923 25.7968 51.5328 23.7326C142.571 12.0896 234.527 12.0891 325.565 23.7311C341.712 25.7959 354.923 37.4056 359.538 53.0157L368.086 81.9258H9L17.5642 53.0014Z"
+                        className={'fill-telegram-button opacity-10'}
                     />
                 </g>
                 <defs>
