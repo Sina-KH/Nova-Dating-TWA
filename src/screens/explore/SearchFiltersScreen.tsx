@@ -11,6 +11,7 @@ import MyMultiSelect from '@/components/Select/MyMultiSelect';
 import MyAgeSelector from '@/components/Select/MyAgeSelector';
 import { ProfileSetSearchFiltersRequest } from '@/api/requests/profile/profileSetSearchFiltersRequest';
 import MyLoadingView from '@/components/Loading/MyLoadingView';
+import MyScrollableContainer from '@/components/Containers/MyScrollableContainer';
 
 export default function SearchFiltersScreen() {
     const { sessionToken, user, setUser } = useSession();
@@ -50,7 +51,7 @@ export default function SearchFiltersScreen() {
     }
 
     return (
-        <div className={'w-full h-full flex flex-col items-center space-y-4 p-8 overflow-y-auto'}>
+        <MyScrollableContainer className={'space-y-4'}>
             <div className={'relative w-full pb-4 items-center'}>
                 <MySecondaryButton
                     onClick={() => {
@@ -160,6 +161,6 @@ export default function SearchFiltersScreen() {
             >
                 {t('profile.edit.edit')}
             </MyButton>
-        </div>
+        </MyScrollableContainer>
     );
 }

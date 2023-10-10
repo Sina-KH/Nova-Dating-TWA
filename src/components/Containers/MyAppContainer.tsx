@@ -9,6 +9,7 @@ import BottomNavigation from '@/components/BottomNavigation/BottomNavigation';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useSocket } from '@/contexts/useSocket';
 
+// bottom navigation, theme related stuff and redirects are handled here.
 export default function MyAppContent({ Component, pageProps }: AppProps) {
     const { sessionToken, user } = useSession();
     const { socket } = useSocket();
@@ -125,11 +126,9 @@ export default function MyAppContent({ Component, pageProps }: AppProps) {
                     }}
                     transition={{ duration: 0.3 }}
                 >
-                    <div className={clsx('h-full', showBottomNavigation ? 'pb-12' : '')}>
-                        <MainContainer>
-                            <Component {...pageProps} />
-                        </MainContainer>
-                    </div>
+                    <MainContainer>
+                        <Component {...pageProps} />
+                    </MainContainer>
                 </motion.div>
             </AnimatePresence>
             <BottomNavigation

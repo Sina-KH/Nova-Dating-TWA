@@ -12,6 +12,7 @@ import { MatchRequestLinkRequest } from '@/api/requests/match/matchRequestLinkRe
 import clsx from 'clsx';
 import EmptyCard from '@/components/Card/EmptyCard';
 import { useSocket } from '@/contexts/useSocket';
+import MyScrollableContainer from '@/components/Containers/MyScrollableContainer';
 
 export default function MatchesScreen() {
     const { sessionToken, user } = useSession();
@@ -78,7 +79,7 @@ export default function MatchesScreen() {
     }, [matches, socket]);
 
     return (
-        <div className={'w-full h-full flex flex-col items-center p-8 overflow-y-auto'}>
+        <MyScrollableContainer>
             <div className={'w-full flex flex-row pb-8 items-center gap-2'}>
                 <LogoIcon />
                 <MyPromotionLabel className={'font-bold text-2xl flex-grow'} text={t('matches.title')} />
@@ -186,6 +187,6 @@ export default function MatchesScreen() {
                     <EmptyCard title={t('matches.empty.title')} subTitle={t('matches.empty.subTitle')} />
                 </div>
             )}
-        </div>
+        </MyScrollableContainer>
     );
 }

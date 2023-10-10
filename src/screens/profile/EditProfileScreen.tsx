@@ -14,6 +14,7 @@ import { ITag, ITagType } from '@/types/ITag';
 import { TagListRequest } from '@/api/requests/tagListRequest';
 import MyPhotoCropper from '@/components/Image/MyPhotoCropper';
 import MyLoadingView from '@/components/Loading/MyLoadingView';
+import MyScrollableContainer from '@/components/Containers/MyScrollableContainer';
 
 export default function EditProfileScreen() {
     const { sessionToken, user, setUser } = useSession();
@@ -66,7 +67,7 @@ export default function EditProfileScreen() {
         );
 
     return (
-        <div className={'w-full h-full flex flex-col items-center space-y-4 p-8 overflow-y-auto'}>
+        <MyScrollableContainer className={'space-y-4'}>
             <div className={'w-full flex flex-row pb-4 items-center gap-2'}>
                 <p className={'font-bold text-2xl flex-grow text-center'}>{t('profile.edit.title')}</p>
             </div>
@@ -182,6 +183,6 @@ export default function EditProfileScreen() {
             >
                 {t('profile.edit.edit')}
             </MyButton>
-        </div>
+        </MyScrollableContainer>
     );
 }

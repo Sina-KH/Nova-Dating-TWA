@@ -7,70 +7,41 @@ const tabs = [
     {
         key: 'matches',
         icon: (
-            <svg width="32" height="32" viewBox="0 0 23 23">
-                <path
-                    id="Vector"
-                    d="M17.0548 2.29626H6.05481C4.53314 2.29626 3.30481 3.51543 3.30481 5.01876V15.0196C3.30481 16.5229 4.53314 17.7421 6.05481 17.7421H6.75148C7.48481 17.7421 8.18148 18.0263 8.69481 18.5396L10.2623 20.0888C10.9773 20.7946 12.1415 20.7946 12.8565 20.0888L14.424 18.5396C14.9373 18.0263 15.6431 17.7421 16.3673 17.7421H17.0548C18.5765 17.7421 19.8048 16.5229 19.8048 15.0196V5.01876C19.8048 3.51543 18.5765 2.29626 17.0548 2.29626ZM11.8115 14.1763C11.674 14.2221 11.4448 14.2221 11.2981 14.1763C10.1065 13.7638 7.42981 12.0679 7.42981 9.18043C7.43898 7.90626 8.45648 6.8796 9.72148 6.8796C10.4731 6.8796 11.1331 7.2371 11.5548 7.79626C11.9765 7.2371 12.6365 6.8796 13.3881 6.8796C14.6531 6.8796 15.6798 7.90626 15.6798 9.18043C15.6706 12.0679 13.0031 13.7638 11.8115 14.1763Z"
-                />
+            <svg width="44" height="46" viewBox="0 0 22 23" className={'mt-1'}>
+                <path d="M16.5 2.29614H5.5C3.97833 2.29614 2.75 3.51531 2.75 5.01864V15.0195C2.75 16.5228 3.97833 17.742 5.5 17.742H6.19667C6.93 17.742 7.62667 18.0261 8.14 18.5395L9.7075 20.0886C10.4225 20.7945 11.5867 20.7945 12.3017 20.0886L13.8692 18.5395C14.3825 18.0261 15.0883 17.742 15.8125 17.742H16.5C18.0217 17.742 19.25 16.5228 19.25 15.0195V5.01864C19.25 3.51531 18.0217 2.29614 16.5 2.29614ZM11.2567 14.1761C11.1192 14.222 10.89 14.222 10.7433 14.1761C9.55167 13.7636 6.875 12.0678 6.875 9.18031C6.88417 7.90614 7.90167 6.87948 9.16667 6.87948C9.91833 6.87948 10.5783 7.23698 11 7.79614C11.4217 7.23698 12.0817 6.87948 12.8333 6.87948C14.0983 6.87948 15.125 7.90614 15.125 9.18031C15.1158 12.0678 12.4483 13.7636 11.2567 14.1761Z" />
             </svg>
-        ),
-        selectedClassName: 'fill-telegram-button'
+        )
     },
     {
         key: 'explore',
         icon: (
-            <svg width="49" height="49" viewBox="0 0 49 49" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="24.5548" cy="24.4629" r="23.5" stroke="url(#paint0_linear_18_118)" />
-                <g clipPath="url(#clip0_18_118)">
-                    <path
-                        d="M25 14C19.49 14 15 18.49 15 24C15 29.51 19.49 34 25 34C30.51 34 35 29.51 35 24C35 18.49 30.51 14 25 14ZM23.5 28.13C20.88 28.13 20.88 28.13 20.88 25.51C20.88 22.41 23.4 19.89 26.5 19.89C29.12 19.89 29.12 19.89 29.12 22.51C29.12 25.6 26.6 28.13 23.5 28.13Z"
-                        className={'fill-telegram-bg'}
-                    />
+            <svg width="64" height="61" viewBox="0 0 25 24" className={'-mt-1'}>
+                <g clip-path="url(#clip0_127_1354)">
+                    <path d="M12.4452 2C6.93519 2 2.44519 6.49 2.44519 12C2.44519 17.51 6.93519 22 12.4452 22C17.9552 22 22.4452 17.51 22.4452 12C22.4452 6.49 17.9552 2 12.4452 2ZM10.9452 16.13C8.32519 16.13 8.32519 16.13 8.32519 13.51C8.32519 10.41 10.8452 7.89 13.9452 7.89C16.5652 7.89 16.5652 7.89 16.5652 10.51C16.5652 13.6 14.0452 16.13 10.9452 16.13Z" />
                 </g>
                 <defs>
-                    <linearGradient
-                        id="paint0_linear_18_118"
-                        x1="22.5924"
-                        y1="14.3549"
-                        x2="12.77"
-                        y2="46.0048"
-                        gradientUnits="userSpaceOnUse"
-                    ></linearGradient>
-                    <clipPath id="clip0_18_118">
-                        <rect width="24" height="24" className={'fill-telegram-bg'} transform="translate(13 12)" />
+                    <clipPath id="clip0_127_1354">
+                        <rect width="24" height="24" transform="translate(0.44519)" />
                     </clipPath>
                 </defs>
             </svg>
-        ),
-        selectedClassName: 'fill-telegram-button stroke-telegram-button-text'
+        )
     },
     {
         key: 'profile',
         icon: (
-            <svg width="26" height="26" viewBox="0 0 19 19">
-                <g id="user(3) 1" clipPath="url(#clip0_18_126)">
-                    <path
-                        id="Vector"
-                        d="M12.6431 10.9907H6.46628C5.46239 10.9919 4.49996 11.3913 3.7901 12.1011C3.08023 12.811 2.6809 13.7734 2.67969 14.7773C2.67969 16.9049 4.40442 18.6296 6.53198 18.6296H12.5774C14.705 18.6296 16.4297 16.9049 16.4297 14.7773C16.4285 13.7734 16.0291 12.811 15.3193 12.1011C14.6094 11.3913 13.647 10.9919 12.6431 10.9907Z"
-                    />
-                    <path
-                        id="Vector_2"
-                        d="M9.55452 9.46293C12.0858 9.46293 14.1379 7.4109 14.1379 4.8796C14.1379 2.34829 12.0858 0.296265 9.55452 0.296265C7.02322 0.296265 4.97119 2.34829 4.97119 4.8796C4.97119 7.4109 7.02322 9.46293 9.55452 9.46293Z"
-                    />
+            <svg width="44" height="46" viewBox="0 0 22 23" className={'mt-1'}>
+                <g clip-path="url(#clip0_127_1359)">
+                    <path d="M14.0883 12.9905H7.91148C6.90758 12.9917 5.94515 13.391 5.23529 14.1009C4.52542 14.8107 4.12609 15.7732 4.12488 16.7771C4.12488 18.9046 5.84961 20.6294 7.97717 20.6294H14.0226C16.1501 20.6294 17.8749 18.9046 17.8749 16.7771C17.8737 15.7732 17.4743 14.8107 16.7645 14.1009C16.0546 13.391 15.0922 12.9917 14.0883 12.9905Z" />
+                    <path d="M11 11.4628C13.5313 11.4628 15.5833 9.41078 15.5833 6.87948C15.5833 4.34817 13.5313 2.29614 11 2.29614C8.46865 2.29614 6.41663 4.34817 6.41663 6.87948C6.41663 9.41078 8.46865 11.4628 11 11.4628Z" />
                 </g>
                 <defs>
-                    <clipPath id="clip0_18_126">
-                        <rect
-                            width="18.3333"
-                            height="18.3333"
-                            className={'fill-telegram-bg'}
-                            transform="translate(0.387939 0.296265)"
-                        />
+                    <clipPath id="clip0_127_1359">
+                        <rect width="18.3333" height="18.3333" transform="translate(1.83325 2.29614)" />
                     </clipPath>
                 </defs>
             </svg>
-        ),
-        selectedClassName: 'fill-telegram-button stroke-telegram-button'
+        )
     }
 ];
 
@@ -84,50 +55,50 @@ export default function BottomNavigation({ className, disabled, matchBadge }: Pr
     let selectedTab = router.pathname.split('/')[1];
     return (
         <div
-            className={clsx('fixed bottom-0 z-50 w-full pointer-events-none', className)}
+            className={clsx('fixed -bottom-1 z-50 w-full pointer-events-none', className)}
             style={{
-                maxHeight: '113px',
-                maxWidth: '450px',
+                maxHeight: '85px',
+                maxWidth: '378px',
                 left: '50%',
                 transform: 'translate(-50%, 0%)'
             }}
         >
-            <svg viewBox="0 0 360 127" fill="none" className={'w-full'}>
-                <g filter="url(#filter0_d_18_111)">
+            <svg viewBox="0 0 378 85" fill="none" className={'w-full'}>
+                <g filter="url(#filter0_d_126_1328)">
                     <path
-                        d="M8.56425 80.0014C13.184 64.3989 26.3923 52.7968 42.5328 50.7326C133.571 39.0896 225.527 39.0891 316.565 50.7311C332.712 52.7959 345.923 64.4056 350.538 80.0157L359.086 108.926H-1.35807e-06L8.56425 80.0014Z"
-                        className={'fill-telegram-secondary-bg'}
+                        d="M17.5642 53.0014C22.184 37.3989 35.3923 25.7968 51.5328 23.7326C142.571 12.0896 234.527 12.0891 325.565 23.7311C341.712 25.7959 354.923 37.4056 359.538 53.0157L368.086 81.9258H9L17.5642 53.0014Z"
+                        fill="#0E1621"
                     />
                 </g>
                 <defs>
                     <filter
-                        id="filter0_d_18_111"
-                        x="-30"
+                        id="filter0_d_126_1328"
+                        x="0"
                         y="0"
-                        width="419.086"
-                        height="126.926"
+                        width="377.086"
+                        height="84.9258"
                         filterUnits="userSpaceOnUse"
-                        colorInterpolationFilters="sRGB"
+                        color-interpolation-filters="sRGB"
                     >
-                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                        <feFlood flood-opacity="0" result="BackgroundImageFix" />
                         <feColorMatrix
                             in="SourceAlpha"
                             type="matrix"
                             values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
                             result="hardAlpha"
                         />
-                        <feOffset dy="-12" />
-                        <feGaussianBlur stdDeviation="15" />
+                        <feOffset dy="-6" />
+                        <feGaussianBlur stdDeviation="4.5" />
                         <feComposite in2="hardAlpha" operator="out" />
-                        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.45 0" />
-                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_18_111" />
-                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_18_111" result="shape" />
+                        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_126_1328" />
+                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_126_1328" result="shape" />
                     </filter>
                 </defs>
             </svg>
             <div
                 className={clsx(
-                    `absolute top-6 bottom-0 left-0 right-0 h-full flex flex-row items-center`,
+                    `absolute top-3 bottom-0 left-8 right-8 h-full flex flex-row items-center`,
                     disabled ? '' : 'pointer-events-auto'
                 )}
             >
@@ -138,7 +109,6 @@ export default function BottomNavigation({ className, disabled, matchBadge }: Pr
                             path={it.key}
                             icon={it.icon}
                             isSelected={it.key === selectedTab}
-                            selectedClassName={it.selectedClassName}
                             badge={it.key === 'matches' && matchBadge}
                         />
                     );

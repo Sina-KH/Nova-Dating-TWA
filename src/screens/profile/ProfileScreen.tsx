@@ -14,6 +14,7 @@ import MyIconButton from '@/components/Button/MyIconButton';
 import ExploreUserCardImage from '@/components/Card/ExploreUserCard/ExploreUserCardImage';
 import ExploreUserCardInterests from '@/components/Card/ExploreUserCard/ExploreUserCardInterests';
 import MyPromotionLabel from '@/components/Label/MyPromotionLabel';
+import MyScrollableContainer from '@/components/Containers/MyScrollableContainer';
 
 export default function ProfileScreen() {
     const { user } = useSession();
@@ -37,7 +38,7 @@ export default function ProfileScreen() {
     }
 
     return (
-        <div className={'w-full h-full flex flex-col items-center p-8 overflow-y-auto'}>
+        <MyScrollableContainer>
             <div className={'w-full flex flex-row pb-8 items-center gap-2'}>
                 <LogoIcon />
                 <MyPromotionLabel className={'font-bold text-2xl flex-grow'} text={t('profile.title')} />
@@ -59,6 +60,6 @@ export default function ProfileScreen() {
             <ExploreUserCardImage user={user} />
             {/*user interests*/}
             <ExploreUserCardInterests user={user} />
-        </div>
+        </MyScrollableContainer>
     );
 }
