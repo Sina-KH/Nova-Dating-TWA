@@ -39,38 +39,55 @@ export default function MyPhotoCropper({ selectedFile, onCancel, onSubmit }: Pro
         if (previewURL) {
             img.src = previewURL;
             img.onload = () => {
-                initCropArea();
+                // init default crop area based on image size
+                // using % because it is easier as we do not have preview image's size here.
+                let crop: Crop | undefined = undefined;
+                if (img.width < img.height) {
+                    crop = {
+                        unit: '%',
+                        x: 0,
+                        y: (((img.height - img.width) / img.height) * 100) / 2,
+                        width: 100,
+                        height: (img.width / img.height) * 100
+                    };
+                } else {
+                    crop = {
+                        unit: '%',
+                        x: (((img.width - img.height) / img.width) * 100) / 2,
+                        y: 0,
+                        width: (img.height / img.width) * 100,
+                        height: 100
+                    };
+                }
+                setCrop(crop);
+                // crop default area
+                onCropComplete(
+                    {
+                        width: (crop.width * img.width) / 100,
+                        height: (crop.height * img.height) / 100,
+                        unit: 'px',
+                        // x and y not used
+                        x: 0,
+                        y: 0
+                    },
+                    {
+                        width: crop.width,
+                        height: crop.height,
+                        unit: '%',
+                        x: crop.x,
+                        y: crop.y
+                    }
+                );
             };
         }
         return img;
     }, [previewURL]);
 
-    // init default crop area based on image size
-    function initCropArea() {
-        // using % because it is easier as we do not have preview image's size here.
-        if (image.width < image.height) {
-            setCrop({
-                unit: '%',
-                x: 0,
-                y: (((image.height - image.width) / image.height) * 100) / 2,
-                width: 100,
-                height: (image.width / image.height) * 100
-            });
-        } else {
-            setCrop({
-                unit: '%',
-                x: (((image.width - image.height) / image.width) * 100) / 2,
-                y: 0,
-                width: (image.height / image.width) * 100,
-                height: 100
-            });
-        }
-    }
-
     // create file on crop
-    const onCropComplete = (croppedAreaPixels: PixelCrop, croppedAreaPercents: PercentCrop) => {
+    function onCropComplete(croppedAreaPixels: PixelCrop, croppedAreaPercents: PercentCrop) {
         // check if selection is near to square. (we set default crop using % so it can be very little pixels different!)
-        if (Math.abs(croppedAreaPixels.width - croppedAreaPixels.height) > croppedAreaPixels.width / 100) return;
+        const diff = Math.abs(croppedAreaPixels.width - croppedAreaPixels.height);
+        if (diff > croppedAreaPixels.width / 100) return;
         if (!previewURL) return;
 
         // Generate a cropped image
@@ -108,7 +125,7 @@ export default function MyPhotoCropper({ selectedFile, onCancel, onSubmit }: Pro
             'image/jpeg',
             1
         );
-    };
+    }
 
     return (
         <div className={'w-full h-full flex flex-col items-center space-y-4 p-8 overflow-y-auto'}>

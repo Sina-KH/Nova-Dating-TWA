@@ -7,7 +7,7 @@ interface Props {
 export default function MySwipeContainerActions({ onLike, onDislike }: Props) {
     return (
         <div
-            className={'fixed bottom-0 w-full flex flex-row justify-center pb-20 gap-6'}
+            className={'fixed bottom-0 w-full flex flex-row justify-center mb-20 gap-6'}
             style={{
                 zIndex: '9999'
             }}
