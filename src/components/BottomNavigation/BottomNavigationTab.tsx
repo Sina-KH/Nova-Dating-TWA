@@ -7,9 +7,10 @@ interface Props {
     icon: React.ReactNode;
     isSelected: boolean;
     badge?: boolean;
+    noSelectionClassName?: string;
 }
 
-export function BottomNavigationTab({ path, icon, isSelected, badge }: Props) {
+export function BottomNavigationTab({ path, icon, isSelected, badge, noSelectionClassName }: Props) {
     const router = useRouter();
 
     return (
@@ -28,9 +29,11 @@ export function BottomNavigationTab({ path, icon, isSelected, badge }: Props) {
                     .then();
             }}
         >
-            <div className={isSelected ? 'fill-telegram-button' : 'fill-white opacity-80'}>{icon}</div>
+            <div className={isSelected ? 'fill-telegram-button' : noSelectionClassName || 'fill-white opacity-80'}>
+                {icon}
+            </div>
             {badge ? (
-                <div className={'absolute top-0 mr-6 left-auto right-auto rounded-full h-2 w-2 bg-red-600'} />
+                <div className={'absolute -top-1 mr-6 left-auto right-auto rounded-full h-2 w-2 bg-red-600'} />
             ) : undefined}
         </button>
     );

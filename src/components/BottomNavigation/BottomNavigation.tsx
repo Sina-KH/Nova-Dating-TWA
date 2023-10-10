@@ -15,17 +15,33 @@ const tabs = [
     {
         key: 'explore',
         icon: (
-            <svg width="64" height="61" viewBox="0 0 25 24" className={'-mt-3'}>
-                <g clip-path="url(#clip0_127_1354)">
-                    <path d="M12.4452 2C6.93519 2 2.44519 6.49 2.44519 12C2.44519 17.51 6.93519 22 12.4452 22C17.9552 22 22.4452 17.51 22.4452 12C22.4452 6.49 17.9552 2 12.4452 2ZM10.9452 16.13C8.32519 16.13 8.32519 16.13 8.32519 13.51C8.32519 10.41 10.8452 7.89 13.9452 7.89C16.5652 7.89 16.5652 7.89 16.5652 10.51C16.5652 13.6 14.0452 16.13 10.9452 16.13Z" />
+            <svg width="55" height="55" viewBox="0 0 48 48" className={'-mt-3'}>
+                <circle cx="24" cy="24" r="23.5" stroke="url(#paint0_linear_129_1461)" />
+                <g clipPath="url(#clip0_129_1461)">
+                    <path
+                        d="M24.4452 13.5371C18.9352 13.5371 14.4452 18.0271 14.4452 23.5371C14.4452 29.0471 18.9352 33.5371 24.4452 33.5371C29.9552 33.5371 34.4452 29.0471 34.4452 23.5371C34.4452 18.0271 29.9552 13.5371 24.4452 13.5371ZM22.9452 27.6671C20.3252 27.6671 20.3252 27.6671 20.3252 25.0471C20.3252 21.9471 22.8452 19.4271 25.9452 19.4271C28.5652 19.4271 28.5652 19.4271 28.5652 22.0471C28.5652 25.1371 26.0452 27.6671 22.9452 27.6671Z"
+                        fill="#F0F1F5"
+                    />
                 </g>
                 <defs>
-                    <clipPath id="clip0_127_1354">
-                        <rect width="24" height="24" transform="translate(0.44519)" />
+                    <linearGradient
+                        id="paint0_linear_129_1461"
+                        x1="22.0376"
+                        y1="13.892"
+                        x2="12.2152"
+                        y2="45.5419"
+                        gradientUnits="userSpaceOnUse"
+                    >
+                        <stop stopColor="white" stopOpacity="0" />
+                        <stop offset="1" stopColor="white" stopOpacity="0.22" />
+                    </linearGradient>
+                    <clipPath id="clip0_129_1461">
+                        <rect width="24" height="24" fill="white" transform="translate(12.4452 11.5371)" />
                     </clipPath>
                 </defs>
             </svg>
-        )
+        ),
+        noSelectionClassName: 'fill-gray-900'
     },
     {
         key: 'profile',
@@ -115,6 +131,7 @@ export default function BottomNavigation({ className, disabled, matchBadge }: Pr
                             icon={it.icon}
                             isSelected={it.key === selectedTab}
                             badge={it.key === 'matches' && matchBadge}
+                            noSelectionClassName={it.noSelectionClassName}
                         />
                     );
                 })}
