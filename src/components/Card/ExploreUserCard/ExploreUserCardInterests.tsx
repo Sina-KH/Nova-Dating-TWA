@@ -13,7 +13,7 @@ export default function ExploreUserCardInterests({ user }: Props) {
     return (
         <>
             <p className={'mt-2 w-full'}>{t('explore.interests')}</p>
-            <div className={'w-full mt-2 grid grid-cols-2 gap-2'}>
+            <div className={'w-full mt-2 grid grid-cols-2 gap-2 pb-20'}>
                 {user.interests.map((it: ITag) => {
                     return (
                         <div

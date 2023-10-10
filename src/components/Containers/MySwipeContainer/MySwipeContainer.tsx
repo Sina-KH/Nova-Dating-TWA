@@ -75,7 +75,7 @@ export default function MySwipeContainer({ users, userLiked, userDisliked, loadM
     };*/
 
     return (
-        <div className={'relative flex flex-col w-full h-full overflow-x-hidden pb-20'}>
+        <div className={'relative flex flex-col w-full h-full overflow-x-hidden'}>
             {/*swipe container*/}
             <div
                 className="relative swipe-container w-full h-full"
